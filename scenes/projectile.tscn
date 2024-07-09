@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://xnpa0v1ustg4"]
+
+[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_ju1eh"]
+[ext_resource type="Texture2D" uid="uid://cj0shg6ude8qx" path="res://assets/soldier/soldier-walking.png" id="2_r3d1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq1t5"]
+atlas = ExtResource("2_r3d1k")
+region = Rect2(4665, 0, 311, 398)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g040i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq1t5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ju1eh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g040i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
