@@ -9,6 +9,22 @@ var Bullet = preload("res://scenes/projectile.tscn")
 var fire_rate = 0.2
 var can_fire = true
 var fire_timer = 0.0
+var hp = 100
+var current_weapon = "Pistol"
+
+signal update_hud(hp, weapon)
+
+func _ready():
+	emit_signal("update_hud", hp, current_weapon)
+
+func take_damage(amount):
+	hp -= amount
+	emit_signal("update_hud", hp, current_weapon)
+
+func change_weapon(new_weapon):
+	current_weapon = new_weapon
+	emit_signal("update_hud", hp, current_weapon)
+
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
@@ -51,3 +67,5 @@ func shoot():
 	bullet.scale = Vector2(0.1, 0.1)
 	get_parent().add_child(bullet)
 	animated_sprite.play("shooting")
+	take_damage(5)
+

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://2sb4wl82v6gx"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="HPLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 584.0
+offset_right = 164.0
+offset_bottom = 648.0
+text = "HP: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 985.0
+offset_top = 576.0
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "Pistol"
+horizontal_alignment = 1
+vertical_alignment = 1
