@@ -1,6 +1,6 @@
 [gd_scene load_steps=40 format=3 uid="uid://cirrdl384yl6p"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_e7kw0"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_e7kw0"]
 [ext_resource type="Texture2D" uid="uid://cj0shg6ude8qx" path="res://assets/soldier/soldier-walking.png" id="2_ox7q2"]
 [ext_resource type="Texture2D" uid="uid://brrfv7jhl3qk5" path="res://assets/soldier/soldier-shooting.png" id="3_eowmj"]
 
