@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://xnpa0v1ustg4"]
 
-[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_ju1eh"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_8o4su"]
 [ext_resource type="Texture2D" uid="uid://cj0shg6ude8qx" path="res://assets/soldier/soldier-walking.png" id="2_r3d1k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xq1t5"]
@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_ju1eh")
+script = ExtResource("1_8o4su")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
