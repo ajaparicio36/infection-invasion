@@ -3,28 +3,6 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var muzzle = $Muzzle
-var Bullet = preload("res://scenes/projectile.tscn")
-
-var fire_rate = 0.2
-var can_fire = true
-var fire_timer = 0.0
-var hp = 100
-var current_weapon = "Pistol"
-
-signal update_hud(hp, weapon)
-
-func _ready():
-	emit_signal("update_hud", hp, current_weapon)
-
-func take_damage(amount):
-	hp -= amount
-	emit_signal("update_hud", hp, current_weapon)
-
-func change_weapon(new_weapon):
-	current_weapon = new_weapon
-	emit_signal("update_hud", hp, current_weapon)
-
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
@@ -38,10 +16,7 @@ func _physics_process(delta):
 		velocity.x += SPEED
 	velocity = velocity.normalized() * SPEED
 	
-	if Input.is_action_pressed("shoot") and can_fire:
-		shoot();
-		can_fire = false
-		fire_timer = fire_rate
+	if Input.is_action_pressed("shoot"):
 		if animated_sprite.animation != "shooting" or not animated_sprite.is_playing():
 			animated_sprite.play("shooting")
 	elif velocity != Vector2.ZERO:
@@ -49,23 +24,10 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play("idle")
 	
-	if not can_fire:
-		fire_timer -= delta
-		if fire_timer <= 0:
-			can_fire = true
-	
 	look_at(get_global_mouse_position())
 	rotate(PI/2)
 	move_and_slide();
-	
-	
 
-func shoot():
-	var bullet = Bullet.instantiate()
-	bullet.position = muzzle.global_position
-	bullet.direction = Vector2.UP.rotated(rotation)
-	bullet.scale = Vector2(0.1, 0.1)
-	get_parent().add_child(bullet)
-	animated_sprite.play("shooting")
-	take_damage(5)
+
+
 
