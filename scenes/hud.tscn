@@ -18,10 +18,21 @@ vertical_alignment = 1
 
 [node name="WeaponLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 985.0
-offset_top = 576.0
+offset_left = 986.0
+offset_top = 513.0
+offset_right = 1153.0
+offset_bottom = 585.0
+text = "Weapon:
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AmmoLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 998.0
+offset_top = 591.0
 offset_right = 1152.0
-offset_bottom = 648.0
-text = "Pistol"
+offset_bottom = 647.0
+text = "Ammo:"
 horizontal_alignment = 1
 vertical_alignment = 1

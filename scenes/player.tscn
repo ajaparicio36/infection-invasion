@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://cirrdl384yl6p"]
+[gd_scene load_steps=41 format=3 uid="uid://cirrdl384yl6p"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e7kw0"]
 [ext_resource type="Texture2D" uid="uid://cj0shg6ude8qx" path="res://assets/soldier/soldier-walking.png" id="2_ox7q2"]
 [ext_resource type="Texture2D" uid="uid://brrfv7jhl3qk5" path="res://assets/soldier/soldier-shooting.png" id="3_eowmj"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="4_x0kbv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu12q"]
 atlas = ExtResource("2_ox7q2")
@@ -273,11 +274,15 @@ script = ExtResource("1_e7kw0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.52588e-05, -0.999992)
-scale = Vector2(0.323955, 0.271591)
+position = Vector2(-1, 3.8147e-06)
+scale = Vector2(0.193926, 0.16258)
 sprite_frames = SubResource("SpriteFrames_dqb30")
 animation = &"shooting"
 frame_progress = 0.767651
 
-[node name="Muzzle" type="Node2D" parent="."]
-position = Vector2(13, -58)
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2(5, -41)
+script = ExtResource("4_x0kbv")
+
+[node name="Barrel" type="Node2D" parent="Weapon"]
+position = Vector2(0, 5)
