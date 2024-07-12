@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://muha7gpkur4w"]
+
+[ext_resource type="Script" path="res://scripts/enemy spawner.gd" id="1_qt8yv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_402ya"]
+size = Vector2(131, 45)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "spawn enemy"
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("1_qt8yv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(56, 14)
+shape = SubResource("RectangleShape2D_402ya")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_shape_entered" from="Area2D" to="Area2D" method="_on_area_shape_entered"]

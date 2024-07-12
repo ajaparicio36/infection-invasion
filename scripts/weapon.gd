@@ -27,9 +27,9 @@ class Weapon:
 
 var weapons = {
 	"Pistol": Weapon.new("Pistol", false, 100000000000, 0.3, 20),
-	"Rifle": Weapon.new("Rifle", false, 100, 0.1, 15),
-	"Shotgun": Weapon.new("Shotgun", false, 0, 0.8, 30, 5, 0.4),
-	"Sniper": Weapon.new("Sniper", true, 0, 1, 100)
+	"Rifle": Weapon.new("Rifle", false, 100, 0.1, 30),
+	"Shotgun": Weapon.new("Shotgun", false, 5, 0.8, 50, 5, 0.4),
+	"Sniper": Weapon.new("Sniper", true, 5, 1, 100)
 }
 
 signal take_damage(lost_hp)
