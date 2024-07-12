@@ -35,6 +35,7 @@ var weapons = {
 signal take_damage(lost_hp)
 signal set_weapon(new_weapon)
 signal set_ammo(new_ammo)
+signal bullet_hit(damage)
 
 func _ready():
 	change_weapon("Pistol")
@@ -64,7 +65,11 @@ func create_bullet(rotation):
 	bullet.position = barrel.global_position
 	bullet.direction = Vector2.UP.rotated(rotation)
 	bullet.scale = Vector2(0.07, 0.07)
+	bullet.connect("hit", Callable(self, "_on_bullet_hit"))
 	return bullet
+
+func _on_bullet_hit():
+	emit_signal("bullet_hit", weapon.damage)
 
 func _process(delta):
 	for weapon_name in weapons.keys():

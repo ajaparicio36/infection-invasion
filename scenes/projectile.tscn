@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://xnpa0v1ustg4"]
+[gd_scene load_steps=6 format=3 uid="uid://xnpa0v1ustg4"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_8o4su"]
 [ext_resource type="Texture2D" uid="uid://cj0shg6ude8qx" path="res://assets/soldier/soldier-walking.png" id="2_r3d1k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f53r2"]
+radius = 71.0
+height = 368.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xq1t5"]
 atlas = ExtResource("2_r3d1k")
@@ -18,14 +22,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" groups=["bullet"]]
 script = ExtResource("1_8o4su")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["bullet"]]
+shape = SubResource("CapsuleShape2D_f53r2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-28, 24)
 sprite_frames = SubResource("SpriteFrames_g040i")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
