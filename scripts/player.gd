@@ -16,11 +16,10 @@ func _physics_process(delta):
 		velocity.x += SPEED
 	velocity = velocity.normalized() * SPEED
 	
-	if Input.is_action_pressed("shoot"):
-		if animated_sprite.animation != "shooting" or not animated_sprite.is_playing():
-			animated_sprite.play("shooting")
-	elif velocity != Vector2.ZERO:
+	if velocity != Vector2.ZERO:
 		animated_sprite.play("walking")
+	elif Input.is_action_pressed("melee"):
+		animated_sprite.play("shooting")
 	else:
 		animated_sprite.play("idle")
 	
