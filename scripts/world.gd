@@ -5,4 +5,5 @@ extends Node2D  # or whatever your main scene extends
 
 func _ready():
 	player.connect("take_damage", Callable(hud, "take_damage"))
-	player.connect("update_hud", Callable(hud, "update_hud"))
+	player.connect("set_weapon", Callable(hud, "set_weapon"))
+	player.connect("set_ammo", Callable(hud, "set_ammo"))
