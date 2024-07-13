@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://bs61yujxasjbj"]
+
+[ext_resource type="PackedScene" uid="uid://cirrdl384yl6p" path="res://scenes/player.tscn" id="1_c8gyp"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_l8tj6"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="2_8blih"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_8wfom"]
+[ext_resource type="PackedScene" uid="uid://2sb4wl82v6gx" path="res://scenes/hud.tscn" id="4_cdni0"]
+
+[sub_resource type="GDScript" id="GDScript_d2qn8"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_l8tj6")
+
+[node name="Player" parent="." instance=ExtResource("1_c8gyp")]
+position = Vector2(582, 315)
+script = SubResource("GDScript_d2qn8")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+script = ExtResource("2_8wfom")
+
+[node name="HUD" parent="." instance=ExtResource("4_cdni0")]
+offset_left = 582.0
+offset_top = 315.0
+offset_right = 1733.0
+offset_bottom = 962.0
+script = ExtResource("2_8blih")
