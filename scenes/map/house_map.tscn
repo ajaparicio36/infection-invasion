@@ -104,6 +104,7 @@
 [ext_resource type="Texture2D" uid="uid://rssslcq5qlre" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall1_4.png" id="92_d7o8f"]
 [ext_resource type="Texture2D" uid="uid://cysmg8cbu5jh3" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall2_6.png" id="93_n3cuo"]
 [ext_resource type="Texture2D" uid="uid://cs7f2afcip7t0" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall3_1.png" id="94_tesrt"]
+[ext_resource type="PackedScene" uid="uid://444vvvfh8672" path="res://scenes/barrier.tscn" id="95_fuuy0"]
 [ext_resource type="Texture2D" uid="uid://diikp44j6evif" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall3_2.png" id="95_n1sjh"]
 [ext_resource type="Texture2D" uid="uid://cd0ols765xkk" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall3_3.png" id="96_yqbsa"]
 

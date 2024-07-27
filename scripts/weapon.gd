@@ -15,7 +15,6 @@ class Weapon:
 	var bullet_count: int = 1
 	var spread: float = 0.0
 	var ammo: int
-
 	func _init(_name: String, _penetrate: bool, _ammo: int, _fire_rate: float, _damage: int, _bullet_count: int = 1, _spread: float = 0.0):
 		name = _name
 		penetrate = _penetrate
@@ -35,7 +34,7 @@ var weapons = {
 signal take_damage(lost_hp)
 signal set_weapon(new_weapon)
 signal set_ammo(new_ammo)
-signal bullet_hit(damage)
+signal bullet_hit(damage: int, enemy_id: int)
 
 func _ready():
 	change_weapon("Pistol")
@@ -50,12 +49,12 @@ func change_weapon(weapon_name: String):
 func shoot():
 	if weapon.bullet_count == 1:
 		var bullet = create_bullet(barrel.global_rotation)
-		get_parent().get_parent().add_child(bullet)
+		get_tree().current_scene.add_child(bullet)
 	else:
 		for i in range(weapon.bullet_count):
 			var spread_angle = lerp(-weapon.spread, weapon.spread, float(i) / (weapon.bullet_count - 1))
 			var bullet = create_bullet(barrel.global_rotation + spread_angle)
-			get_parent().get_parent().add_child(bullet)
+			get_tree().current_scene.add_child(bullet)
 	
 	weapon.ammo -= 1
 	emit_signal("set_ammo", weapon.ammo)
@@ -65,11 +64,13 @@ func create_bullet(rotation):
 	bullet.position = barrel.global_position
 	bullet.direction = Vector2.UP.rotated(rotation)
 	bullet.scale = Vector2(0.07, 0.07)
+	bullet.damage = weapon.damage
 	bullet.connect("hit", Callable(self, "_on_bullet_hit"))
 	return bullet
 
-func _on_bullet_hit():
-	emit_signal("bullet_hit", weapon.damage)
+func _on_bullet_hit(damage: int, enemy_id: int):
+	emit_signal("bullet_hit", damage, enemy_id)
+	print("Bullet hit enemy " + str(enemy_id) + " for " + str(damage) + " damage")
 
 func _process(delta):
 	for weapon_name in weapons.keys():
