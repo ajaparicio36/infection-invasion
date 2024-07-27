@@ -10,7 +10,7 @@ func _on_area_entered(area):
 
 func spawn_enemy_near(center_position: Vector2):
 	var new_enemy = Enemy.instantiate()
-	
+	new_enemy.scale = Vector2(0.2, 0.2)
 	# Generate a random position within the spawn radius
 	var random_angle = randf() * 2 * PI
 	var random_distance = randf() * spawn_radius

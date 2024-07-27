@@ -21,3 +21,6 @@ func _on_area_entered(area):
 		target_enemy_id = area.get_parent().enemy_id  # Assuming the Area2D is a child of the enemy
 		emit_signal("hit", damage, target_enemy_id)
 		queue_free()
+	if area.is_in_group("walls"):
+		print("map")
+		queue_free()

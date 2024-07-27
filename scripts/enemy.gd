@@ -29,7 +29,9 @@ func _process(delta):
 		look_at(Globals.player_pos)
 
 func _physics_process(_delta: float) -> void:
+	
 	if hp > 0:
+		rotate(PI/2)
 		var player_pos = Globals.player_pos
 		var direction = (player_pos - global_position).normalized()
 		velocity = direction * SPEED
