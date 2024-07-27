@@ -1,7 +1,5 @@
-[gd_scene load_steps=197 format=3 uid="uid://dc3tto4ayc3fk"]
+[gd_scene load_steps=195 format=3 uid="uid://dc3tto4ayc3fk"]
 
-[ext_resource type="PackedScene" uid="uid://cirrdl384yl6p" path="res://scenes/player.tscn" id="1_7nhm3"]
-[ext_resource type="Script" path="res://scripts/camera.gd" id="2_b0rf2"]
 [ext_resource type="Texture2D" uid="uid://c2gco2hfuuggl" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0001_Layer-2.png" id="3_i65oe"]
 [ext_resource type="Texture2D" uid="uid://bqv2v64ptul0j" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0017_Layer-18.png" id="4_s7cc1"]
 [ext_resource type="Texture2D" uid="uid://coowdnvugpkk6" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0004_Layer-5.png" id="5_ghgua"]
@@ -4417,14 +4415,6 @@ sources/110 = SubResource("TileSetAtlasSource_t278a")
 
 [node name="HouseMap" type="Node2D"]
 y_sort_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("1_7nhm3")]
-position = Vector2(617, 561)
-scale = Vector2(2.76, 3.05453)
-disable_mode = 2
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-script = ExtResource("2_b0rf2")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(6.10352e-05, 6.10352e-05)
