@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+var SPEED = 300.0
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -14,6 +14,10 @@ func _physics_process(_delta):
 		velocity.x -= SPEED
 	if Input.is_action_pressed("right"):
 		velocity.x += SPEED
+	if Input.is_action_pressed("run"):
+		SPEED = 500
+	else:
+		SPEED = 300
 	velocity = velocity.normalized() * SPEED
 	
 	if velocity != Vector2.ZERO:
