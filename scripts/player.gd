@@ -4,7 +4,7 @@ const SPEED = 300.0
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("up"):
 		velocity.y -= SPEED
@@ -26,6 +26,8 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	rotate(PI/2)
 	move_and_slide();
+	Globals.player_pos = global_position
+	
 
 
 
