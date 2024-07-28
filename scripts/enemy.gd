@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300
+const SPEED = 100
 var hp = 100
 var enemy_id: int
 

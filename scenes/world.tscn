@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs61yujxasjbj"]
+[gd_scene load_steps=9 format=3 uid="uid://bs61yujxasjbj"]
 
 [ext_resource type="PackedScene" uid="uid://cirrdl384yl6p" path="res://scenes/player.tscn" id="1_c8gyp"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_l8tj6"]
@@ -7,9 +7,11 @@
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_8wfom"]
 [ext_resource type="PackedScene" uid="uid://2sb4wl82v6gx" path="res://scenes/hud.tscn" id="4_cdni0"]
 [ext_resource type="PackedScene" uid="uid://muha7gpkur4w" path="res://scenes/enemyspawner.tscn" id="6_ev3cc"]
+[ext_resource type="PackedScene" uid="uid://cden2kt0quly0" path="res://scenes/enemy.tscn" id="8_5gfh4"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_l8tj6")
+zombie = ExtResource("8_5gfh4")
 
 [node name="Player" parent="." instance=ExtResource("1_c8gyp")]
 position = Vector2(611, 317)
@@ -33,3 +35,15 @@ scale = Vector2(0.64, 0.64)
 
 [node name="Node2D2" parent="." instance=ExtResource("6_ev3cc")]
 position = Vector2(518, 207)
+
+[node name="SpawnPoint1" type="Marker2D" parent="."]
+position = Vector2(-557, -93)
+
+[node name="SpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(43, 1273)
+
+[node name="SpawnPoint3" type="Marker2D" parent="."]
+position = Vector2(899, 1227)
+
+[node name="SpawnPoint4" type="Marker2D" parent="."]
+position = Vector2(1589, 242)
