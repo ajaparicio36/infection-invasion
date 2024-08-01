@@ -18,7 +18,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_area_entered(area):
 	if area.is_in_group("enemy"):
-		target_enemy_id = area.get_parent().enemy_id  # Assuming the Area2D is a child of the enemy
+		var enemy = area.get_parent()
+		if enemy.has_method("get_instance_id"):
+			target_enemy_id = enemy.get_instance_id()
 		emit_signal("hit", damage, target_enemy_id)
 		queue_free()
 	if area.is_in_group("walls"):
