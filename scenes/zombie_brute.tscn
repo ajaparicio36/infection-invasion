@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://cm471301iyomq"]
+
+[ext_resource type="Texture2D" uid="uid://bfhdni5qmgn8i" path="res://assets/zombie-walking.png" id="1_a5sd8"]
+[ext_resource type="Script" path="res://scripts/zombie_brute.gd" id="1_b8kc0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0t2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ot0e"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(0, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6ko3"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(313, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6q3c"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(626, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe0w7"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(939, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kow6"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(1252, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejrvf"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(1565, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1al7"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(1878, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx1fl"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(2191, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0ye5"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(2504, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbir6"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(2817, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6sni"]
+atlas = ExtResource("1_a5sd8")
+region = Rect2(3130, 0, 313, 375)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_43h00"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ot0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6ko3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6q3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe0w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kow6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejrvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1al7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx1fl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0ye5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbir6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6sni")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="zombie_brute" type="CharacterBody2D"]
+scale = Vector2(4.41427, 4.41427)
+script = ExtResource("1_b8kc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.8123, 0.906152)
+scale = Vector2(1.08, 1.08)
+shape = SubResource("CircleShape2D_k0t2r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.73369
+scale = Vector2(0.079018, 0.079018)
+sprite_frames = SubResource("SpriteFrames_43h00")

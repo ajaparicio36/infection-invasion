@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cden2kt0quly0"]
+[gd_scene load_steps=28 format=3 uid="uid://cden2kt0quly0"]
 
 [ext_resource type="Texture2D" uid="uid://bfhdni5qmgn8i" path="res://assets/zombie-walking.png" id="1_5mjgh"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pwa68"]
@@ -47,6 +47,50 @@ region = Rect2(2817, 0, 313, 375)
 atlas = ExtResource("1_5mjgh")
 region = Rect2(3130, 0, 313, 375)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlobh"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(0, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxn82"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(313, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faov4"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(626, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk1fo"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(939, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv3c5"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(1252, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v527u"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(1565, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eamvc"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(1878, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_johmq"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(2191, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dod2b"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(2504, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo74s"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(2817, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn4ab"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(3130, 0, 313, 375)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_5yyk1"]
 animations = [{
 "frames": [{
@@ -84,8 +128,46 @@ animations = [{
 "texture": SubResource("AtlasTexture_ps8nt")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlobh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxn82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_faov4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk1fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv3c5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v527u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eamvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_johmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dod2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo74s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn4ab")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfe4n"]
@@ -104,7 +186,7 @@ script = ExtResource("1_pwa68")
 position = Vector2(-33.3332, -16.6666)
 rotation = 1.56881
 sprite_frames = SubResource("SpriteFrames_5yyk1")
-frame = 10
+animation = &"walking"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 

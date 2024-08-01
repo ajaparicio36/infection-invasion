@@ -4,8 +4,6 @@ const SPEED = 100
 var hp = 100
 var enemy_id: int
 
-@onready var nav_agent = $NavigationAgent2D
-
 signal get_damage(enemy_id: int, current_hp: int)
 
 func _ready():
