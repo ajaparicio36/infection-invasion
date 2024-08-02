@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cden2kt0quly0"]
+[gd_scene load_steps=18 format=3 uid="uid://cden2kt0quly0"]
 
 [ext_resource type="Texture2D" uid="uid://bfhdni5qmgn8i" path="res://assets/zombie-walking.png" id="1_5mjgh"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pwa68"]
@@ -7,43 +7,47 @@
 atlas = ExtResource("1_5mjgh")
 region = Rect2(0, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jayky"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw4lw"]
+atlas = ExtResource("1_5mjgh")
+region = Rect2(0, 0, 313, 375)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fet27"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(313, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebtpf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4tcb"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(626, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4k8c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwx0m"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(939, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvk6a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmhea"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(1252, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aan4x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ljdy"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(1565, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ylsjc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncsdb"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(1878, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyblp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvcud"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(2191, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eto46"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma4xp"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(2504, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8jnjy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_34rvs"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(2817, 0, 313, 375)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ps8nt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxlvf"]
 atlas = ExtResource("1_5mjgh")
 region = Rect2(3130, 0, 313, 375)
 
@@ -52,39 +56,47 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_frkq0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jayky")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ebtpf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k4k8c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvk6a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aan4x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ylsjc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vyblp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eto46")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8jnjy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ps8nt")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw4lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fet27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4tcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwx0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmhea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ljdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncsdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvcud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma4xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34rvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxlvf")
+}],
+"loop": true,
+"name": &"walking",
 "speed": 12.0
 }]
 
@@ -104,7 +116,7 @@ script = ExtResource("1_pwa68")
 position = Vector2(-33.3332, -16.6666)
 rotation = 1.56881
 sprite_frames = SubResource("SpriteFrames_5yyk1")
-frame = 10
+animation = &"walking"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 

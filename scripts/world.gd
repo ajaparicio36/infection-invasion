@@ -5,6 +5,7 @@ extends Node2D  # or whatever your main scene extends
 
 var current_wave: int
 @export var zombie: PackedScene
+@export var zombie_brute: PackedScene
 
 var starting_nodes: int 
 var current_nodes: int
@@ -16,17 +17,18 @@ func _ready():
 	weapon.connect("set_ammo", Callable(hud, "set_ammo"))
 	weapon.connect("bullet_hit", Callable(self, "_on_weapon_bullet_hit"))
 	
-	current_wave = 0
+	current_wave = 2
 	Globals.current_wave = current_wave
 	starting_nodes = get_child_count()
 	current_nodes = get_child_count()
 	position_to_next_wave()
-	
+
 func position_to_next_wave():
 	if current_nodes == starting_nodes:
 		current_wave += 1
 		Globals.current_wave = current_wave
-		prepare_spawn("zombie", 2.0, 2.0)
+		prepare_spawn("zombie", 2.0, 1.0)
+		prepare_spawn("zombie_brute", 1.5, 2.0)
 		print(current_wave)
 
 func prepare_spawn(type, multiplier, mob_spawns):
@@ -58,7 +60,20 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 				add_child(zombie4)
 				mob_spawn_rounds -= 1
 				await get_tree().create_timer(mob_wait_time).timeout
-		wave_spawn_ended = true
+	elif type == "zombie_brute":
+		var brute_spawn1 = $BruteSpawnPoint1
+		var brute_spawn2 = $BruteSpawnPoint2
+		if mob_spawn_rounds >= 1:
+			for i in mob_spawn_rounds:
+				var brute1 = zombie_brute.instantiate()
+				brute1.global_position = brute_spawn1.global_position
+				var brute2 = zombie_brute.instantiate()
+				brute2.global_position = brute_spawn2.global_position
+				add_child(brute1)
+				add_child(brute2)
+				mob_spawn_rounds -= 1
+				await get_tree().create_timer(mob_wait_time).timeout
+	wave_spawn_ended = true
 
 func _on_weapon_bullet_hit(damage: int, enemy_id: int):
 	var enemy = instance_from_id(enemy_id)

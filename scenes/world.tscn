@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs61yujxasjbj"]
+[gd_scene load_steps=7 format=3 uid="uid://bs61yujxasjbj"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_l8tj6"]
 [ext_resource type="PackedScene" uid="uid://dc3tto4ayc3fk" path="res://scenes/map/house_map.tscn" id="2_00q4d"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="2_8blih"]
 [ext_resource type="PackedScene" uid="uid://2sb4wl82v6gx" path="res://scenes/hud.tscn" id="4_cdni0"]
+[ext_resource type="PackedScene" uid="uid://nl5rbakxvobu" path="res://scenes/zombie_brute.tscn" id="6_hb07w"]
 [ext_resource type="PackedScene" uid="uid://cden2kt0quly0" path="res://scenes/enemy.tscn" id="8_5gfh4"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_l8tj6")
 zombie = ExtResource("8_5gfh4")
+zombie_brute = ExtResource("6_hb07w")
 
 [node name="HUD" parent="." instance=ExtResource("4_cdni0")]
 offset_left = 582.0
@@ -31,3 +33,9 @@ position = Vector2(899, 1227)
 
 [node name="SpawnPoint4" type="Marker2D" parent="."]
 position = Vector2(1589, 242)
+
+[node name="BruteSpawnPoint1" type="Marker2D" parent="."]
+position = Vector2(1585, 553)
+
+[node name="BruteSpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(-581, 295)
