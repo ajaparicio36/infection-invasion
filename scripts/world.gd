@@ -1,6 +1,6 @@
 extends Node2D  # or whatever your main scene extends
 
-@onready var weapon = $Player/Weapon
+@onready var weapon = $HouseMap/Player/Weapon
 @onready var hud = $HUD
 
 var current_wave: int
@@ -14,6 +14,7 @@ func _ready():
 	weapon.connect("take_damage", Callable(hud, "take_damage"))
 	weapon.connect("set_weapon", Callable(hud, "set_weapon"))
 	weapon.connect("set_ammo", Callable(hud, "set_ammo"))
+	weapon.connect("bullet_hit", Callable(self, "_on_weapon_bullet_hit"))
 	
 	current_wave = 0
 	Globals.current_wave = current_wave
@@ -58,3 +59,8 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 				mob_spawn_rounds -= 1
 				await get_tree().create_timer(mob_wait_time).timeout
 		wave_spawn_ended = true
+
+func _on_weapon_bullet_hit(damage: int, enemy_id: int):
+	var enemy = instance_from_id(enemy_id)
+	if enemy and enemy.has_method("deal_damage"):
+		enemy.deal_damage(damage, enemy_id)
