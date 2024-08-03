@@ -116,10 +116,10 @@ rotation = 1.57833
 sprite_frames = SubResource("SpriteFrames_fxw7v")
 animation = &"walking"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(8.66942, 22.7203)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
 position = Vector2(8.14309, -16.402)
 shape = SubResource("CircleShape2D_k4f02")
 
