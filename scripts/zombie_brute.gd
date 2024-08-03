@@ -7,6 +7,7 @@ var enemy_id: int
 @onready var animated_sprite = $AnimatedSprite2D
 
 signal get_damage(enemy_id: int, current_hp: int)
+signal add_score(amount)
 
 func _ready():
 	add_to_group("enemy")
@@ -20,6 +21,7 @@ func deal_damage(damage: int, hit_enemy_id: int):
 		print("Brute ", str(enemy_id), " took ", str(damage), " damage. HP: ", str(hp))
 		if hp <= 0:
 			print("Brute ", str(enemy_id), " is being removed")
+			emit_signal("add_score", 30)
 			queue_free()
 	else: 
 		print("Warning: Mismatched enemy ID. Expected " + str(enemy_id) + ", got " + str(hit_enemy_id))

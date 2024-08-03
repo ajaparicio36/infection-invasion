@@ -48,13 +48,17 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 		if mob_spawn_rounds >= 1:
 			for i in mob_spawn_rounds:
 				var zombie1 = zombie.instantiate()
+				zombie1.connect("add_score", Callable(hud, "add_score"))
 				zombie1.global_position = zombie_spawn1.global_position
 				var zombie2 = zombie.instantiate()
+				zombie2.connect("add_score", Callable(hud, "add_score"))
 				zombie2.global_position = zombie_spawn2.global_position
 				var zombie3 = zombie.instantiate()
 				zombie3.global_position = zombie_spawn3.global_position
+				zombie3.connect("add_score", Callable(hud, "add_score"))
 				var zombie4 = zombie.instantiate()
 				zombie4.global_position = zombie_spawn4.global_position
+				zombie4.connect("add_score", Callable(hud, "add_score"))
 				add_child(zombie1)
 				add_child(zombie2)
 				add_child(zombie3)
@@ -67,8 +71,10 @@ func spawn_type(type, mob_spawn_rounds, mob_wait_time):
 		if mob_spawn_rounds >= 1:
 			for i in mob_spawn_rounds:
 				var brute1 = zombie_brute.instantiate()
+				brute1.connect("add_score", Callable(hud, "add_score"))
 				brute1.global_position = brute_spawn1.global_position
 				var brute2 = zombie_brute.instantiate()
+				brute2.connect("add_score", Callable(hud, "add_score"))
 				brute2.global_position = brute_spawn2.global_position
 				add_child(brute1)
 				add_child(brute2)
