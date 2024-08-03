@@ -106,6 +106,7 @@
 [ext_resource type="Texture2D" uid="uid://cs7f2afcip7t0" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall3_1.png" id="94_tesrt"]
 [ext_resource type="Texture2D" uid="uid://diikp44j6evif" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall3_2.png" id="95_n1sjh"]
 [ext_resource type="Texture2D" uid="uid://cd0ols765xkk" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall3_3.png" id="96_yqbsa"]
+[ext_resource type="PackedScene" uid="uid://444vvvfh8672" path="res://scenes/barrier.tscn" id="107_35xe0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vqnj7"]
 texture = ExtResource("3_i65oe")
@@ -9724,9 +9725,6 @@ sources/29 = SubResource("TileSetAtlasSource_am3v8")
 sources/31 = SubResource("TileSetAtlasSource_im4vl")
 sources/67 = SubResource("TileSetAtlasSource_1mhqi")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmkr6"]
-size = Vector2(38.338, 3.10745)
-
 [node name="HouseMap" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_if8kr")
@@ -9781,51 +9779,38 @@ layer_6/tile_data = PackedInt32Array(-2097070, 458859, 805306375, -2097069, 3933
 layer_7/name = "Door"
 layer_7/tile_data = PackedInt32Array(2621449, 458846, 1879048197, 2686985, 393310, 1879048197, 2752521, 327774, 1879048197, 2818057, 262238, 1879048197, 2883593, 196702, 1879048197, 2949129, 131166, 1879048197, 3014665, 65630, 1879048197, 3080201, 94, 1879048197, 2621448, 458846, 1610612741, 2686984, 393310, 1610612741, 2752520, 327774, 1610612741, 2818056, 262238, 1610612741, 2883592, 196702, 1610612741, 2949128, 131166, 1610612741, 3014664, 65630, 1610612741, 3080200, 94, 1610612741, 1245192, 458846, 1610612741, 1310728, 393310, 1610612741, 1376264, 327774, 1610612741, 1441800, 262238, 1610612741, 1507336, 196702, 1610612741, 1572872, 131166, 1610612741, 1638408, 65630, 1610612741, 1703944, 94, 1610612741, 1245193, 458846, 1879048197, 1310729, 393310, 1879048197, 1376265, 327774, 1879048197, 1441801, 262238, 1879048197, 1507337, 196702, 1879048197, 1572873, 131166, 1879048197, 1638409, 65630, 1879048197, 1703945, 94, 1879048197, -196587, 458846, 1879048197, -131051, 393310, 1879048197, -65515, 327774, 1879048197, 21, 262238, 1879048197, 65557, 196702, 1879048197, 131093, 131166, 1879048197, 196629, 65630, 1879048197, 262165, 94, 1879048197, -196588, 458846, 1610612741, -131052, 393310, 1610612741, -65516, 327774, 1610612741, 20, 262238, 1610612741, 65556, 196702, 1610612741, 131092, 131166, 1610612741, 196628, 65630, 1610612741, 262164, 94, 1610612741, 196656, 94, 536870917, 196657, 65630, 536870917, 196658, 131166, 536870917, 196659, 196702, 536870917, 196660, 262238, 536870917, 196661, 327774, 536870917, 196662, 393310, 536870917, 131120, 94, 5, 131121, 65630, 5, 131122, 131166, 5, 131123, 196702, 5, 131124, 262238, 5, 131125, 327774, 5, 131126, 393310, 5, 131127, 458846, 5, 131153, 94, 5, 131154, 65630, 5, 131155, 131166, 5, 131156, 196702, 5, 131157, 262238, 5, 131158, 327774, 5, 131159, 393310, 5, 131160, 458846, 5, 196690, 65630, 536870917, 196691, 131166, 536870917, 196692, 196702, 536870917, 196693, 262238, 536870917, 196694, 327774, 536870917, 196695, 393310, 536870917, 196696, 458846, 536870917, -982962, 94, 1073741829, -917426, 65630, 1073741829, -851890, 131166, 1073741829, -786354, 196702, 1073741829, -720818, 262238, 1073741829, -655282, 327774, 1073741829, -589746, 393310, 1073741829, -524210, 458846, 1073741829, -982961, 94, 1342177285, -917425, 65630, 1342177285, -851889, 131166, 1342177285, -786353, 196702, 1342177285, -720817, 262238, 1342177285, -655281, 327774, 1342177285, -589745, 393310, 1342177285, -524209, 458846, 1342177285, 4915302, 94, 1342177285, 4980838, 65630, 1342177285, 5046374, 131166, 1342177285, 5111910, 196702, 1342177285, 5177446, 262238, 1342177285, 5242982, 327774, 1342177285, 5308518, 393310, 1342177285, 5374054, 458846, 1342177285, 4915301, 94, 1073741829, 4980837, 65630, 1073741829, 5046373, 131166, 1073741829, 5111909, 196702, 1073741829, 5177445, 262238, 1073741829, 5242981, 327774, 1073741829, 5308517, 393310, 1073741829, 5374053, 458846, 1073741829, 4194326, 94, 268435461, 4194325, 65630, 268435461, 4194324, 131166, 268435461, 4194323, 196702, 268435461, 4194322, 262238, 268435461, 4194321, 327774, 268435461, 4194320, 393310, 268435461, 4194319, 458846, 268435461, 4259855, 458846, 805306373, 4259856, 393310, 805306373, 4259857, 327774, 805306373, 4259858, 262238, 805306373, 4259859, 196702, 805306373, 4259860, 131166, 805306373, 4259861, 65630, 805306373, 4259862, 94, 805306373)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-disable_mode = 1
+[node name="Barrier" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(-319, -42)
+rotation = 1.57079
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(703, -538)
-rotation = 3.14159
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier2" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(-321, -250)
+rotation = 1.57079
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1363, 1505)
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier3" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(1897, 292)
+rotation = 1.57079
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(701, 1192)
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier4" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(1899, 483)
+rotation = 1.57079
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(168.5, 1511)
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier5" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(704, 1178)
+scale = Vector2(1.4, 1)
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1859, 389)
-rotation = 4.71239
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier6" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(165, 1495)
+scale = Vector2(1.4, 1)
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1589, -539)
-rotation = 3.14056
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier7" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(1360, 1492)
+scale = Vector2(1.4, 1)
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-332, -145)
-rotation = 1.5708
-scale = Vector2(9.025, 9.025)
-shape = SubResource("RectangleShape2D_gmkr6")
-one_way_collision_margin = 10.0
+[node name="Barrier8" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(678, -581)
+scale = Vector2(1.4, 1)
+
+[node name="Barrier9" parent="." instance=ExtResource("107_35xe0")]
+position = Vector2(1595, -574)
+scale = Vector2(1.4, 1)

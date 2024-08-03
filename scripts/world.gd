@@ -1,14 +1,12 @@
-extends Node2D  # or whatever your main scene extends
+extends Node2D
 
 @onready var weapon = $HouseMap/Player/Weapon
 @onready var hud = $HUD
-
 var current_wave: int
 @export var zombie: PackedScene
 @export var zombie_brute: PackedScene
 @export var sprinter: PackedScene
-
-var starting_nodes: int 
+var starting_nodes: int
 var current_nodes: int
 var wave_spawn_ended
 
@@ -18,11 +16,56 @@ func _ready():
 	weapon.connect("set_ammo", Callable(hud, "set_ammo"))
 	weapon.connect("bullet_hit", Callable(self, "_on_weapon_bullet_hit"))
 	
+	# Connect barriers
+	for i in range(1, 10):  # Assuming you have Barrier1 to Barrier9
+		var barrier = get_node("HouseMap/Barrier" + str(i))
+		if barrier:
+			print("Connecting barrier: " + str(barrier))
+			connect_barrier(barrier)
+		
+	get_tree().connect("node_added", Callable(self, "_on_node_added"))
+	
 	current_wave = 2
 	Globals.current_wave = current_wave
 	starting_nodes = get_child_count()
 	current_nodes = get_child_count()
 	position_to_next_wave()
+
+func connect_barrier(barrier):
+	print("Connecting barrier: " + str(barrier))
+	# Connect all enemies to this barrier
+	get_tree().connect("node_added", Callable(self, "_on_node_added").bind(barrier))
+	# Connect existing enemies
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		print("Connecting existing enemy " + str(enemy) + " to barrier " + str(barrier))
+		if not enemy.is_connected("attack_barrier", Callable(self, "_on_enemy_attack_barrier")):
+			var connection_result = enemy.connect("attack_barrier", Callable(self, "_on_enemy_attack_barrier"))
+			print("Signal connection result for existing enemy: " + str(connection_result))
+		else:
+			print("Signal was already connected for existing enemy")
+
+func _on_node_added(node):
+	print("Node added: " + str(node))
+	if node is CharacterBody2D and node.is_in_group("enemy"):
+		print("Attempting to connect enemy " + str(node) + " to _on_enemy_attack_barrier")
+		var signal_exists = node.has_signal("attack_barrier")
+		print("Enemy has attack_barrier signal: " + str(signal_exists))
+		if signal_exists:
+			if not node.is_connected("attack_barrier", Callable(self, "_on_enemy_attack_barrier")):
+				var connection_result = node.connect("attack_barrier", Callable(self, "_on_enemy_attack_barrier"))
+				print("Signal connection result for new enemy: " + str(connection_result))
+			else:
+				print("Signal was already connected for new enemy")
+		else:
+			print("ERROR: Enemy does not have attack_barrier signal")
+
+func _on_enemy_attack_barrier(damage: int, barrier: Node2D, enemy_id: int):
+	print("_on_enemy_attack_barrier called with damage: " + str(damage) + ", barrier: " + str(barrier) + ", enemy_id: " + str(enemy_id))
+	if barrier and is_instance_valid(barrier) and barrier.has_method("take_damage"):
+		print("Calling take_damage on barrier: " + str(barrier))
+		barrier.take_damage(damage, enemy_id)
+	else:
+		print("Invalid barrier or barrier already freed")
 
 func position_to_next_wave():
 	if current_nodes == starting_nodes:

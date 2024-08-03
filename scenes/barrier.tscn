@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://444vvvfh8672"]
+[gd_scene load_steps=7 format=3 uid="uid://444vvvfh8672"]
 
+[ext_resource type="Script" path="res://scripts/barrier.gd" id="1_ba1oa"]
 [ext_resource type="Texture2D" uid="uid://bomou4nstk4b8" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tilelists/Tilelist2.png" id="1_y5rm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86cmi"]
@@ -24,18 +25,21 @@ animations = [{
 radius = 72.0
 
 [node name="Barrier" type="Node2D"]
+script = ExtResource("1_ba1oa")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["barrier_area"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["barrier_area"]]
 position = Vector2(0, 27)
 shape = SubResource("RectangleShape2D_86cmi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dmefs")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["barrier_area"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["barrier_area"]]
 position = Vector2(-1, 26)
 shape = SubResource("CircleShape2D_31hv7")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
