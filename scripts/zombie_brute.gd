@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 100
-var hp = 100
+const SPEED = 60
+var hp = 150
 var enemy_id: int
 var can_attack = true
 var attack_timer = Timer.new()
