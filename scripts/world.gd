@@ -6,6 +6,7 @@ extends Node2D  # or whatever your main scene extends
 var current_wave: int
 @export var zombie: PackedScene
 @export var zombie_brute: PackedScene
+@export var sprinter: PackedScene
 
 var starting_nodes: int 
 var current_nodes: int
