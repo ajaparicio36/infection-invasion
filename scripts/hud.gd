@@ -40,5 +40,5 @@ func add_score(amount):
 	update_hud(hp, weapon, ammo, score)
 
 func _process(delta):
-	if camera:
+	if camera and Globals.playerAlive:
 		global_position = camera.get_screen_center_position() - get_viewport_rect().size / 2
