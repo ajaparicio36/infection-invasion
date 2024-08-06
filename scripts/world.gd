@@ -25,7 +25,7 @@ func _ready():
 		
 	get_tree().connect("node_added", Callable(self, "_on_node_added"))
 	
-	current_wave = 0
+	current_wave = 3
 	Globals.current_wave = current_wave
 	starting_nodes = get_child_count()
 	current_nodes = get_child_count()

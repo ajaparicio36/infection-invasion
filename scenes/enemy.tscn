@@ -176,7 +176,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -244,7 +244,7 @@ script = ExtResource("1_pwa68")
 position = Vector2(-33.3332, -16.6666)
 rotation = 1.56881
 sprite_frames = SubResource("SpriteFrames_5yyk1")
-animation = &"attack"
+animation = &"walking"
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
@@ -259,7 +259,7 @@ shape = SubResource("CircleShape2D_0cfjm")
 [node name="ZombieDamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieDamageArea"]
-position = Vector2(-4.16665, -12.4999)
+position = Vector2(-8.3333, -12.4999)
 shape = SubResource("CircleShape2D_wbvhb")
 
 [connection signal="area_entered" from="ZombieDamageArea" to="." method="_on_zombie_damage_area_area_entered"]

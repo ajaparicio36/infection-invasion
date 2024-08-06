@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
+class_name zombie_brute
+
 const SPEED = 60
 var hp = 150
 var enemy_id: int
 var can_attack = true
 var attack_timer = Timer.new()
+var damage_to_deal = 25
+var is_dealing_damage: bool
 @onready var animated_sprite = $AnimatedSprite2D
 
 signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
 
 func _ready():
+	is_dealing_damage = false
 	add_child(attack_timer)
 	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))
 	attack_timer.set_one_shot(true)
@@ -43,20 +48,35 @@ func deal_damage(damage: int, hit_enemy_id: int):
 		print("Warning: Mismatched enemy ID. Expected " + str(enemy_id) + ", got " + str(hit_enemy_id))
 
 func _process(_delta):
-	if hp > 0:
+	Globals.bruteDamageAmount = damage_to_deal
+	Globals.bruteDamageZone = $BruteDamageArea
+	
+	if hp > 0 and Globals.playerAlive:
 		look_at(Globals.player_pos)
 
 func _physics_process(_delta: float) -> void:
-	if hp > 0:
-		rotate(PI/2)
-		var player_pos = Globals.player_pos
-		var direction = (player_pos - global_position).normalized()
-		velocity = direction * SPEED
-		
-		if velocity != Vector2.ZERO:
-			animated_sprite.play("walking")
-		else:
-			animated_sprite.play("idle")
-		
+	if Globals.playerAlive:
+		if hp > 0:
+			rotate(PI/2)
+			var player_pos = Globals.player_pos
+			var direction = (player_pos - global_position).normalized()
+			velocity = direction * SPEED
+			
+			if velocity != Vector2.ZERO and !is_dealing_damage:
+				animated_sprite.play("walking")
+			elif is_dealing_damage:
+				velocity = Vector2.ZERO
+				animated_sprite.play("attacking")
+				await get_tree().create_timer(1.0).timeout
+				animated_sprite.play("walking")
+				velocity = direction * SPEED
 		move_and_slide()
+	else:
+		await get_tree().create_timer(2.0).timeout
+		animated_sprite.play("idle")
 
+func _on_brute_damage_area_area_entered(area):
+	if area == Globals.playerHitbox:
+		is_dealing_damage = true
+		await get_tree().create_timer(1.0).timeout
+		is_dealing_damage = false

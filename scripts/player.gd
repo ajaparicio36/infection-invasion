@@ -52,6 +52,9 @@ func check_hitbox():
 		var hitbox = hitbox_areas.front()
 		if hitbox.get_parent() is zombie:
 			damage = Globals.zombieDamageAmount
+		elif hitbox.get_parent() is zombie_brute:
+			damage = Globals.bruteDamageAmount
+		
 	
 	if can_take_damage:
 		take_damage(damage)

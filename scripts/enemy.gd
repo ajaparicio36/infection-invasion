@@ -15,6 +15,7 @@ signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
 
 func _ready():
+	is_dealing_damage = false
 	add_to_group("enemy")
 	enemy_id = get_instance_id()
 	print("Enemy " + str(enemy_id) + " spawned with " + str(hp) + " HP")
@@ -50,7 +51,7 @@ func deal_damage(damage: int, hit_enemy_id: int):
 	else:
 		print("Warning: Mismatched enemy ID. Expected " + str(enemy_id) + ", got " + str(hit_enemy_id))
 
-func _process(delta):
+func _process(_delta):
 	Globals.zombieDamageAmount = damage_to_deal
 	Globals.zombieDamageZone = $ZombieDamageArea
 	
@@ -65,19 +66,21 @@ func _physics_process(_delta: float) -> void:
 			var direction = (player_pos - global_position).normalized()
 			velocity = direction * SPEED
 			
-			if velocity != Vector2.ZERO:
+			if velocity != Vector2.ZERO and !is_dealing_damage:
 				animated_sprite.play("walking")
 			elif is_dealing_damage:
 				velocity = Vector2.ZERO
 				animated_sprite.play("attack")
+				await get_tree().create_timer(1.0).timeout
+				animated_sprite.play("walking")
+				velocity = direction * SPEED
 		move_and_slide()
 	else:
 		await get_tree().create_timer(2.0).timeout
 		animated_sprite.play("idle")
 
-
-
 func _on_zombie_damage_area_area_entered(area):
 	if area == Globals.playerHitbox:
 		is_dealing_damage = true
 		await get_tree().create_timer(1.0).timeout
+		is_dealing_damage = false
