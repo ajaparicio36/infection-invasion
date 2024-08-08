@@ -54,6 +54,8 @@ func check_hitbox():
 			damage = Globals.zombieDamageAmount
 		elif hitbox.get_parent() is zombie_brute:
 			damage = Globals.bruteDamageAmount
+		elif hitbox.get_parent() is zombie_sprinter:
+			damage = Globals.sprinterDamageAmount
 		
 	
 	if can_take_damage:
@@ -80,7 +82,4 @@ func take_damage_cooldown(wait_time):
 	can_take_damage = false
 	await get_tree().create_timer(wait_time).timeout
 	can_take_damage = true
-
-
-
 

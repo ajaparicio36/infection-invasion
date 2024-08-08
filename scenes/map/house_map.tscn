@@ -61,7 +61,6 @@
 [ext_resource type="Texture2D" uid="uid://cmwbtsrnianvt" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0042_Layer-43.png" id="41_nfn82"]
 [ext_resource type="Texture2D" uid="uid://c2pbv5tbyyifg" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0043_Layer-44.png" id="42_2blsu"]
 [ext_resource type="Texture2D" uid="uid://bnqec0cc888pa" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0023_Layer-24.png" id="43_7jxe6"]
-[ext_resource type="Texture2D" uid="uid://b7o22m42r7b1y" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0044_Layer-45.png" id="44_y4c42"]
 [ext_resource type="Texture2D" uid="uid://d0orxmjqk53uh" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0045_Layer-46.png" id="45_oa58j"]
 [ext_resource type="Texture2D" uid="uid://tobofua8p2s2" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0046_Layer-47.png" id="46_sab1q"]
 [ext_resource type="Texture2D" uid="uid://dqo08jp5dimh6" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0047_Layer-48.png" id="47_pmqp4"]
@@ -79,6 +78,7 @@
 [ext_resource type="Texture2D" uid="uid://clmh2jlobed7x" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0058_Layer-59.png" id="59_vafvr"]
 [ext_resource type="Texture2D" uid="uid://ch2cyovovdh53" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0059_Layer-60.png" id="60_t6x0h"]
 [ext_resource type="Texture2D" uid="uid://casqviwvq1qyv" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0060_Layer-0.png" id="61_oiigd"]
+[ext_resource type="Texture2D" uid="uid://b7o22m42r7b1y" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tilelists/objects_house_0044_Layer-45.png" id="62_4um1c"]
 [ext_resource type="Texture2D" uid="uid://bomou4nstk4b8" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tilelists/Tilelist2.png" id="62_icnxd"]
 [ext_resource type="Texture2D" uid="uid://dfatutq5da2pp" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tilelists/Tilelist4.png" id="63_ec4m4"]
 [ext_resource type="Texture2D" uid="uid://q85orqpob3uh" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Floor1.png" id="64_4ra68"]
@@ -5566,7 +5566,7 @@ texture = ExtResource("43_7jxe6")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.75, -17.5, -22.75, -14.5, -26.25, -5.5, -26.75, 24, -25.25, 31, -20.25, 36, 20.75, 36.5, 25.25, 32.5, 27.75, 26.5, 28.25, -11, 21.75, -16, 10.25, -19)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_io33l"]
-texture = ExtResource("44_y4c42")
+texture = ExtResource("62_4um1c")
 7:11/size_in_atlas = Vector2i(18, 10)
 7:11/0 = 0
 7:11/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -9780,37 +9780,37 @@ layer_7/name = "Door"
 layer_7/tile_data = PackedInt32Array(2621449, 458846, 1879048197, 2686985, 393310, 1879048197, 2752521, 327774, 1879048197, 2818057, 262238, 1879048197, 2883593, 196702, 1879048197, 2949129, 131166, 1879048197, 3014665, 65630, 1879048197, 3080201, 94, 1879048197, 2621448, 458846, 1610612741, 2686984, 393310, 1610612741, 2752520, 327774, 1610612741, 2818056, 262238, 1610612741, 2883592, 196702, 1610612741, 2949128, 131166, 1610612741, 3014664, 65630, 1610612741, 3080200, 94, 1610612741, 1245192, 458846, 1610612741, 1310728, 393310, 1610612741, 1376264, 327774, 1610612741, 1441800, 262238, 1610612741, 1507336, 196702, 1610612741, 1572872, 131166, 1610612741, 1638408, 65630, 1610612741, 1703944, 94, 1610612741, 1245193, 458846, 1879048197, 1310729, 393310, 1879048197, 1376265, 327774, 1879048197, 1441801, 262238, 1879048197, 1507337, 196702, 1879048197, 1572873, 131166, 1879048197, 1638409, 65630, 1879048197, 1703945, 94, 1879048197, -196587, 458846, 1879048197, -131051, 393310, 1879048197, -65515, 327774, 1879048197, 21, 262238, 1879048197, 65557, 196702, 1879048197, 131093, 131166, 1879048197, 196629, 65630, 1879048197, 262165, 94, 1879048197, -196588, 458846, 1610612741, -131052, 393310, 1610612741, -65516, 327774, 1610612741, 20, 262238, 1610612741, 65556, 196702, 1610612741, 131092, 131166, 1610612741, 196628, 65630, 1610612741, 262164, 94, 1610612741, 196656, 94, 536870917, 196657, 65630, 536870917, 196658, 131166, 536870917, 196659, 196702, 536870917, 196660, 262238, 536870917, 196661, 327774, 536870917, 196662, 393310, 536870917, 131120, 94, 5, 131121, 65630, 5, 131122, 131166, 5, 131123, 196702, 5, 131124, 262238, 5, 131125, 327774, 5, 131126, 393310, 5, 131127, 458846, 5, 131153, 94, 5, 131154, 65630, 5, 131155, 131166, 5, 131156, 196702, 5, 131157, 262238, 5, 131158, 327774, 5, 131159, 393310, 5, 131160, 458846, 5, 196690, 65630, 536870917, 196691, 131166, 536870917, 196692, 196702, 536870917, 196693, 262238, 536870917, 196694, 327774, 536870917, 196695, 393310, 536870917, 196696, 458846, 536870917, -982962, 94, 1073741829, -917426, 65630, 1073741829, -851890, 131166, 1073741829, -786354, 196702, 1073741829, -720818, 262238, 1073741829, -655282, 327774, 1073741829, -589746, 393310, 1073741829, -524210, 458846, 1073741829, -982961, 94, 1342177285, -917425, 65630, 1342177285, -851889, 131166, 1342177285, -786353, 196702, 1342177285, -720817, 262238, 1342177285, -655281, 327774, 1342177285, -589745, 393310, 1342177285, -524209, 458846, 1342177285, 4915302, 94, 1342177285, 4980838, 65630, 1342177285, 5046374, 131166, 1342177285, 5111910, 196702, 1342177285, 5177446, 262238, 1342177285, 5242982, 327774, 1342177285, 5308518, 393310, 1342177285, 5374054, 458846, 1342177285, 4915301, 94, 1073741829, 4980837, 65630, 1073741829, 5046373, 131166, 1073741829, 5111909, 196702, 1073741829, 5177445, 262238, 1073741829, 5242981, 327774, 1073741829, 5308517, 393310, 1073741829, 5374053, 458846, 1073741829, 4194326, 94, 268435461, 4194325, 65630, 268435461, 4194324, 131166, 268435461, 4194323, 196702, 268435461, 4194322, 262238, 268435461, 4194321, 327774, 268435461, 4194320, 393310, 268435461, 4194319, 458846, 268435461, 4259855, 458846, 805306373, 4259856, 393310, 805306373, 4259857, 327774, 805306373, 4259858, 262238, 805306373, 4259859, 196702, 805306373, 4259860, 131166, 805306373, 4259861, 65630, 805306373, 4259862, 94, 805306373)
 
 [node name="Barrier" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(-319, -42)
+position = Vector2(-287, -44)
 rotation = 1.57079
 
 [node name="Barrier2" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(-321, -250)
+position = Vector2(-289, -252)
 rotation = 1.57079
 
 [node name="Barrier3" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(1897, 292)
+position = Vector2(1902, 296)
 rotation = 1.57079
 
 [node name="Barrier4" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(1899, 483)
+position = Vector2(1904, 487)
 rotation = 1.57079
 
 [node name="Barrier5" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(704, 1178)
+position = Vector2(703, 1143)
 scale = Vector2(1.4, 1)
 
 [node name="Barrier6" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(165, 1495)
+position = Vector2(161, 1466)
 scale = Vector2(1.4, 1)
 
 [node name="Barrier7" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(1360, 1492)
+position = Vector2(1357, 1461)
 scale = Vector2(1.4, 1)
 
 [node name="Barrier8" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(678, -581)
+position = Vector2(678, -582)
 scale = Vector2(1.4, 1)
 
 [node name="Barrier9" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(1595, -574)
+position = Vector2(1595, -582)
 scale = Vector2(1.4, 1)

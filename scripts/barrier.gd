@@ -7,7 +7,7 @@ var hp = 100
 func _ready():
 	print("Barrier " + str(get_instance_id()) + " initialized with " + str(hp) + " HP")
 	add_to_group("barrier_area")
-	
+
 func take_damage(damage: int, enemy_id: int):
 	print("Barrier.take_damage called on " + str(self) + " with damage: " + str(damage) + " from enemy: " + str(enemy_id))
 	hp -= damage

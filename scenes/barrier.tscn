@@ -1,20 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://444vvvfh8672"]
+[gd_scene load_steps=6 format=3 uid="uid://444vvvfh8672"]
 
 [ext_resource type="Script" path="res://scripts/barrier.gd" id="1_ba1oa"]
-[ext_resource type="Texture2D" uid="uid://bomou4nstk4b8" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tilelists/Tilelist2.png" id="1_y5rm4"]
+[ext_resource type="Texture2D" uid="uid://cysmg8cbu5jh3" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tiles/PNG_version_2/Walls/Walls/Wall2_6.png" id="2_v75c2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86cmi"]
-size = Vector2(128, 6)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w400x"]
-atlas = ExtResource("1_y5rm4")
-region = Rect2(260, 1240, 130, 62)
+size = Vector2(128, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dmefs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w400x")
+"texture": ExtResource("2_v75c2")
 }],
 "loop": true,
 "name": &"default",
@@ -22,7 +18,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31hv7"]
-radius = 72.0
+radius = 77.0065
 
 [node name="Barrier" type="Node2D"]
 script = ExtResource("1_ba1oa")
@@ -30,9 +26,8 @@ script = ExtResource("1_ba1oa")
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["barrier_area"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["barrier_area"]]
-position = Vector2(0, 27)
+position = Vector2(0, 44)
 shape = SubResource("RectangleShape2D_86cmi")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dmefs")
