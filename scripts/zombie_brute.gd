@@ -20,6 +20,7 @@ signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
 
 func _ready():
+	modulate = Color(1.0, 0.5, 0.5, 1.0)
 	is_dealing_damage = false
 	add_child(attack_timer)
 	attack_timer.connect("timeout", Callable(self, "_on_attack_timer_timeout"))

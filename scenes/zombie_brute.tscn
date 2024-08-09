@@ -250,10 +250,12 @@ animation = &"walking"
 position = Vector2(8.66942, 22.7203)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
+visible = false
 position = Vector2(8.14309, -16.402)
 shape = SubResource("CircleShape2D_k4f02")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(16.3934, 5.76262)
 shape = SubResource("CircleShape2D_bpnia")
 
@@ -262,6 +264,7 @@ position = Vector2(16.1179, 12.0246)
 scale = Vector2(17.8126, 17.8126)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BruteDamageArea"]
+visible = false
 scale = Vector2(1.01433, 1.01433)
 shape = SubResource("CircleShape2D_p6crw")
 

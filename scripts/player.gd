@@ -117,9 +117,11 @@ func take_damage(damage):
 			take_damage_cooldown(1.0)
 			
 func handle_death():
-	# Here you could trigger a game over screen or animation
 	await get_tree().create_timer(2.0).timeout
-	self.queue_free()
+	get_tree().change_scene_to_file("res://scenes/credits.tscn")
+	#self.queue_free()
+	#await get_tree().create_timer(2.0).timeout
+	
 
 func take_damage_cooldown(wait_time):
 	can_take_damage = false
