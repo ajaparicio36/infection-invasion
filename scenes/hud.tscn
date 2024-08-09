@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://2sb4wl82v6gx"]
 
-[node name="Control" type="Control"]
+[node name="HUD" type="Control"]
 top_level = true
-light_mask = 2
-visibility_layer = 2
+light_mask = 0
+visibility_layer = 1023
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
@@ -60,3 +60,11 @@ offset_top = 51.0
 offset_right = 147.0
 offset_bottom = 74.0
 text = "Highest Score: "
+[node name="HPLabel" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 584.0
+offset_right = 164.0
+offset_bottom = 648.0
+text = "HP: 100"
+horizontal_alignment = 1
+vertical_alignment = 1

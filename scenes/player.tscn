@@ -1,9 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://cirrdl384yl6p"]
+[gd_scene load_steps=46 format=3 uid="uid://cirrdl384yl6p"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e7kw0"]
 [ext_resource type="Texture2D" uid="uid://cj0shg6ude8qx" path="res://assets/soldier/soldier-walking.png" id="2_ox7q2"]
 [ext_resource type="Texture2D" uid="uid://brrfv7jhl3qk5" path="res://assets/soldier/soldier-shooting.png" id="3_eowmj"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="4_x0kbv"]
+[ext_resource type="AudioStream" uid="uid://bov815c317rkn" path="res://assets/sfx/pistol.wav" id="5_53bd0"]
+[ext_resource type="AudioStream" uid="uid://icdsxhtonvah" path="res://assets/sfx/shotgun.wav" id="6_h7451"]
+[ext_resource type="AudioStream" uid="uid://bl1q2jg7v6vkj" path="res://assets/sfx/damage.wav" id="7_q4ban"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu12q"]
 atlas = ExtResource("2_ox7q2")
@@ -285,7 +288,7 @@ script = ExtResource("1_e7kw0")
 position = Vector2(-1, 3.8147e-06)
 scale = Vector2(0.193926, 0.16258)
 sprite_frames = SubResource("SpriteFrames_dqb30")
-animation = &"idle"
+animation = &"walking"
 
 [node name="Weapon" type="Node2D" parent="."]
 position = Vector2(5, -41)
@@ -294,7 +297,17 @@ script = ExtResource("4_x0kbv")
 [node name="Barrel" type="Node2D" parent="Weapon"]
 position = Vector2(0, 5)
 
+[node name="Pistol" type="AudioStreamPlayer2D" parent="Weapon"]
+stream = ExtResource("5_53bd0")
+volume_db = -7.495
+
+[node name="Shotgun" type="AudioStreamPlayer2D" parent="Weapon"]
+stream = ExtResource("6_h7451")
+volume_db = -15.258
+
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2, 1)
@@ -303,3 +316,6 @@ shape = SubResource("CapsuleShape2D_hp5ws")
 [node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_rr0rt")
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_q4ban")
