@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs61yujxasjbj"]
+[gd_scene load_steps=9 format=3 uid="uid://bs61yujxasjbj"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_l8tj6"]
 [ext_resource type="PackedScene" uid="uid://dc3tto4ayc3fk" path="res://scenes/map/house_map.tscn" id="2_00q4d"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2n8uo3dmlyup" path="res://scenes/zombie_sprinter.tscn" id="4_rdvxo"]
 [ext_resource type="PackedScene" uid="uid://nl5rbakxvobu" path="res://scenes/zombie_brute.tscn" id="6_hb07w"]
 [ext_resource type="PackedScene" uid="uid://cden2kt0quly0" path="res://scenes/enemy.tscn" id="8_5gfh4"]
+[ext_resource type="AudioStream" uid="uid://c564kmu30t6tc" path="res://assets/sfx/zombie_sounds.wav" id="8_06cpb"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_l8tj6")
@@ -50,3 +51,6 @@ position = Vector2(893, -950)
 
 [node name="SprinterSpawnPoint3" type="Marker2D" parent="."]
 position = Vector2(499, 1598)
+
+[node name="ZombieSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_06cpb")

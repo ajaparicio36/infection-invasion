@@ -45,6 +45,7 @@ func prepare_spawn(type, multiplier, mob_spawns):
 	spawn_type(type, mob_spawn_rounds, mob_wait_time)
 
 func spawn_type(type, mob_spawn_rounds, mob_wait_time):
+	$ZombieSounds.play()
 	if type == "zombie":
 		var zombie_spawn1 = $SpawnPoint1
 		var zombie_spawn2 = $SpawnPoint2

@@ -276,4 +276,6 @@ target_position = Vector2(0, -183.333)
 position = Vector2(-4.16665, -12.4999)
 target_position = Vector2(0, 174.999)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="ZombieDamageArea" to="." method="_on_zombie_damage_area_area_entered"]

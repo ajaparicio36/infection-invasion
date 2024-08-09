@@ -8,6 +8,7 @@ var can_take_damage: bool
 var dead: bool
 var ammo_count = 0  # Add ammo count
 var nearest_barrier: Node2D = null
+var regen_timer: Timer
 const REPAIR_DISTANCE = 100.0  # Adjust this value as needed
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -17,7 +18,11 @@ signal set_hp(lost_hp)
 signal add_ammo(weapon_name, amount)
 
 func _ready():
-	
+	regen_timer = Timer.new()
+	add_child(regen_timer)
+	regen_timer.wait_time = 0.3
+	regen_timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
+	regen_timer.start()
 	dead = false
 	can_take_damage = true
 	Globals.playerAlive = true
@@ -29,7 +34,12 @@ func _physics_process(_delta):
 		check_hitbox()
 	move_and_slide()
 	Globals.player_pos = global_position
-	
+
+func _on_Timer_timeout():
+	if hp < 100:
+		emit_signal("set_hp", -1)
+		hp += 1
+
 func handle_movement():
 	velocity = Vector2.ZERO
 	check_nearest_barrier()
@@ -96,6 +106,7 @@ func take_damage(damage):
 	if damage != 0:
 		if hp > 0:
 			hp -= damage
+			$Damage.play()
 			emit_signal("set_hp", damage)
 			print("player hp: ", hp)
 			if hp <= 0:
