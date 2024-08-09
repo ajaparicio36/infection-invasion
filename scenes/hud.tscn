@@ -9,9 +9,10 @@ anchors_preset = 0
 offset_right = 1151.0
 offset_bottom = 647.0
 
-[node name="HPLabel" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HPLabel" type="Label" parent="CanvasLayer"]
 z_index = 10
-layout_mode = 0
 offset_left = 1.0
 offset_top = 584.0
 offset_right = 164.0
@@ -20,9 +21,8 @@ text = "HP: 100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WeaponLabel" type="Label" parent="."]
+[node name="WeaponLabel" type="Label" parent="CanvasLayer"]
 z_index = 10
-layout_mode = 0
 offset_left = 986.0
 offset_top = 513.0
 offset_right = 1153.0
@@ -32,9 +32,8 @@ text = "Weapon:
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AmmoLabel" type="Label" parent="."]
+[node name="AmmoLabel" type="Label" parent="CanvasLayer"]
 z_index = 10
-layout_mode = 0
 offset_left = 998.0
 offset_top = 591.0
 offset_right = 1152.0
@@ -43,28 +42,18 @@ text = "Ammo:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
 z_index = 10
-layout_mode = 0
 offset_left = 31.0
 offset_top = 14.0
 offset_right = 79.0
 offset_bottom = 37.0
 text = "Score:"
 
-[node name="HighestScoreLabel" type="Label" parent="."]
+[node name="HighestScoreLabel" type="Label" parent="CanvasLayer"]
 z_index = 10
-layout_mode = 0
 offset_left = 32.0
 offset_top = 51.0
 offset_right = 147.0
 offset_bottom = 74.0
 text = "Highest Score: "
-[node name="HPLabel" type="Label" parent="CanvasLayer"]
-offset_left = 1.0
-offset_top = 584.0
-offset_right = 164.0
-offset_bottom = 648.0
-text = "HP: 100"
-horizontal_alignment = 1
-vertical_alignment = 1

@@ -5,7 +5,7 @@ extends Control
 @onready var ammo_label = $CanvasLayer/AmmoLabel
 @onready var score_label = $CanvasLayer/ScoreLabel
 @onready var camera = get_viewport().get_camera_2d()
-@onready var highest_score_label = $HighestScoreLabel
+@onready var highest_score_label = $CanvasLayer/HighestScoreLabel
 
 var hp = 100
 var weapon = "Pistol"
@@ -21,10 +21,10 @@ func _ready():
 	highest_score = get_highest_score_with_player_name()
 	update_hud(hp, weapon, ammo, score, highest_score)
 	var player_score = get_score(Globals.player_name)
-	print(Globals.player_name, player_score, " SCORE")
+	#print(Globals.player_name, player_score, " SCORE")
 	#print(get_highest_score_with_player_name(), "ASDASDASDASDS")
 
-func update_hud(hp, weapon, ammo, score, highest_score = "0"):
+func update_hud(hp, weapon, ammo, score, highest_score = highest_score):
 	if ammo >= 1000000:
 		ammo_label.text = "Ammo: Infinite"
 	else:
