@@ -12,6 +12,13 @@ var is_dealing_damage: bool
 @onready var animated_sprite = $AnimatedSprite2D
 @export var ammo_scene: PackedScene
 
+@onready var raycast_forward = $RayCastForward
+@onready var raycast_left = $RayCastLeft
+@onready var raycast_right = $RayCastRight
+
+const AVOIDANCE_FORCE = 50.0
+const OBSTACLE_DETECTION_DISTANCE = 50.0
+
 var current_target: Node2D
 var is_attacking_barrier: bool = false
 var destroyed_barriers = []
@@ -20,11 +27,17 @@ signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
 
 func _ready():
+	setup_raycasts()
 	is_dealing_damage = false
 	add_to_group("enemy")
 	enemy_id = get_instance_id()
 	print("Enemy " + str(enemy_id) + " spawned with " + str(hp) + " HP")
 	print("Enemy " + str(enemy_id) + " has attack_barrier signal: " + str(has_signal("attack_barrier")))
+
+func setup_raycasts():
+	raycast_forward.target_position = Vector2(0, -OBSTACLE_DETECTION_DISTANCE)
+	raycast_left.target_position = Vector2(-OBSTACLE_DETECTION_DISTANCE, -OBSTACLE_DETECTION_DISTANCE).normalized() * OBSTACLE_DETECTION_DISTANCE
+	raycast_right.target_position = Vector2(OBSTACLE_DETECTION_DISTANCE, -OBSTACLE_DETECTION_DISTANCE).normalized() * OBSTACLE_DETECTION_DISTANCE
 
 func _on_attack_timer_timeout():
 	can_attack = true
@@ -54,12 +67,16 @@ func _process(_delta):
 	if hp > 0 and Globals.playerAlive:
 		look_at(Globals.player_pos)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Globals.playerAlive:
 		if hp > 0:
 			rotate(PI/2)
 			var target_pos = get_target_position()
 			var direction = (target_pos - global_position).normalized()
+			
+			# Apply obstacle avoidance
+			direction = avoid_obstacles(direction)
+			
 			velocity = direction * SPEED
 			
 			if velocity != Vector2.ZERO and !is_dealing_damage and !is_attacking_barrier:
@@ -72,6 +89,20 @@ func _physics_process(_delta: float) -> void:
 		else:
 			await get_tree().create_timer(2.0).timeout
 			animated_sprite.play("idle")
+
+func avoid_obstacles(direction: Vector2) -> Vector2:
+	var avoidance = Vector2.ZERO
+	
+	if raycast_forward.is_colliding():
+		avoidance -= raycast_forward.get_collision_normal() * AVOIDANCE_FORCE
+	
+	if raycast_left.is_colliding():
+		avoidance -= raycast_left.get_collision_normal() * AVOIDANCE_FORCE
+	
+	if raycast_right.is_colliding():
+		avoidance -= raycast_right.get_collision_normal() * AVOIDANCE_FORCE
+	
+	return (direction + avoidance).normalized()
 
 func get_target_position() -> Vector2:
 	var barriers = get_tree().get_nodes_in_group("barrier")

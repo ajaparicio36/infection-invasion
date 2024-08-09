@@ -4,7 +4,9 @@ var hp = 100
 var max_hp = 100
 var barrier_id: int
 var is_destroyed = false
-@onready var collision = $StaticBody2D/CollisionShape2D
+
+@onready var collision_shape = $StaticBody2D/CollisionShape2D
+ # Assuming you have a Sprite2D node for the barrier's appearance
 
 func _ready():
 	barrier_id = get_instance_id()
@@ -20,11 +22,17 @@ func take_damage(damage: int, enemy_id: int):
 
 func destroy_barrier():
 	is_destroyed = true
-	collision.set_deferred("disabled", true)
-	# Change appearance to show it's destroyed
-	modulate = Color(0.5, 0.5, 0.5, 0.5)  # Example: make it semi-transparent
-	# Notify zombies that the barrier is destroyed
+	collision_shape.set_deferred("disabled", true)
+	modulate = Color(0.5, 0.5, 0.5, 0.5)  # Make it semi-transparent
 	get_tree().call_group("enemy", "on_barrier_destroyed", self)
+
+func repair():
+	if is_destroyed:
+		is_destroyed = false
+		hp = max_hp
+		collision_shape.set_deferred("disabled", false)
+		modulate = Color(1, 1, 1, 1)  # Reset to full opacity
+		print("Barrier " + str(barrier_id) + " repaired. HP: " + str(hp))
 
 func _on_area_2d_area_entered(area):
 	if not is_destroyed:

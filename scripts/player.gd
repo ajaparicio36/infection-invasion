@@ -7,13 +7,17 @@ var min_hp = 0
 var can_take_damage: bool
 var dead: bool
 var ammo_count = 0  # Add ammo count
+var nearest_barrier: Node2D = null
+const REPAIR_DISTANCE = 100.0  # Adjust this value as needed
 
 @onready var animated_sprite = $AnimatedSprite2D
+
 
 signal set_hp(lost_hp)
 signal add_ammo(weapon_name, amount)
 
 func _ready():
+	
 	dead = false
 	can_take_damage = true
 	Globals.playerAlive = true
@@ -28,6 +32,9 @@ func _physics_process(_delta):
 	
 func handle_movement():
 	velocity = Vector2.ZERO
+	check_nearest_barrier()
+	if Input.is_action_just_pressed("repair") and nearest_barrier:
+		repair_barrier()
 	if Input.is_action_pressed("up"):
 		velocity.y -= SPEED
 	if Input.is_action_pressed("down"):
@@ -51,6 +58,21 @@ func handle_movement():
 	
 	look_at(get_global_mouse_position())
 	rotate(PI/2)
+
+func check_nearest_barrier():
+	nearest_barrier = null
+	var shortest_distance = REPAIR_DISTANCE
+	
+	for barrier in get_tree().get_nodes_in_group("barrier"):
+		var distance = global_position.distance_to(barrier.global_position)
+		if distance < shortest_distance:
+			shortest_distance = distance
+			nearest_barrier = barrier
+
+func repair_barrier():
+	if nearest_barrier and nearest_barrier.is_destroyed:
+		nearest_barrier.repair()
+		print("Player repaired a barrier!")
 
 func check_hitbox():
 	var hitbox_areas = $Area2D.get_overlapping_areas()

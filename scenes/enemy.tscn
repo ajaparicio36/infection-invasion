@@ -264,4 +264,16 @@ shape = SubResource("CircleShape2D_0cfjm")
 position = Vector2(-8.3333, -12.4999)
 shape = SubResource("CircleShape2D_wbvhb")
 
+[node name="RayCastForward" type="RayCast2D" parent="."]
+position = Vector2(-4.16665, -12.4999)
+target_position = Vector2(174.999, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(-4.16665, -12.4999)
+target_position = Vector2(0, -183.333)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(-4.16665, -12.4999)
+target_position = Vector2(0, 174.999)
+
 [connection signal="area_entered" from="ZombieDamageArea" to="." method="_on_zombie_damage_area_area_entered"]
