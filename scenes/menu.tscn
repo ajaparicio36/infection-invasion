@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7hhv12tf7sof"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_q05gk"]
+[ext_resource type="Texture2D" uid="uid://bp6iijucsspbt" path="res://assets/backgrounds/1.png" id="2_xsuk6"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q05gk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+process_mode = 4
+z_index = -5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1034.0
+offset_top = -1088.0
+offset_right = 1020.0
+offset_bottom = 912.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_xsuk6")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(260, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5313
+offset_top = -15.5
+offset_right = 41.5313
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Enter Your Name"
+max_length = 10
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="OkButton" type="Button" parent="LineEdit"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 73.0
+offset_right = 259.0
+offset_bottom = 104.0
+text = "Okay
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -181.0
+offset_right = 310.0
+offset_bottom = -23.0
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+text = "Start Game"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+tooltip_text = "Exit the game"
+focus_neighbor_bottom = NodePath("../StartButton")
+text = "Quit"
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="LineEdit/OkButton" to="." method="_on_ok_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
