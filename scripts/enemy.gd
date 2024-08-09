@@ -1,40 +1,46 @@
 extends CharacterBody2D
 
+class_name zombie
+
 const SPEED = 100
 var hp = 100
 var enemy_id: int
 var can_attack = true
 var attack_timer = Timer.new()
+var damage_to_deal = 20
+var is_dealing_damage: bool
 @onready var animated_sprite = $AnimatedSprite2D
+@export var ammo_scene: PackedScene
+
+@onready var raycast_forward = $RayCastForward
+@onready var raycast_left = $RayCastLeft
+@onready var raycast_right = $RayCastRight
+
+const AVOIDANCE_FORCE = 50.0
+const OBSTACLE_DETECTION_DISTANCE = 50.0
+
+var current_target: Node2D
+var is_attacking_barrier: bool = false
+var destroyed_barriers = []
 
 signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
 
 func _ready():
+	setup_raycasts()
+	is_dealing_damage = false
 	add_to_group("enemy")
 	enemy_id = get_instance_id()
 	print("Enemy " + str(enemy_id) + " spawned with " + str(hp) + " HP")
 	print("Enemy " + str(enemy_id) + " has attack_barrier signal: " + str(has_signal("attack_barrier")))
 
+func setup_raycasts():
+	raycast_forward.target_position = Vector2(0, -OBSTACLE_DETECTION_DISTANCE)
+	raycast_left.target_position = Vector2(-OBSTACLE_DETECTION_DISTANCE, -OBSTACLE_DETECTION_DISTANCE).normalized() * OBSTACLE_DETECTION_DISTANCE
+	raycast_right.target_position = Vector2(OBSTACLE_DETECTION_DISTANCE, -OBSTACLE_DETECTION_DISTANCE).normalized() * OBSTACLE_DETECTION_DISTANCE
+
 func _on_attack_timer_timeout():
 	can_attack = true
-
-signal attack_barrier(damage: int, barrier: Node2D, enemy_id: int)
-
-func attack(barrier):
-	print("Enemy.attack called on enemy " + str(enemy_id) + " with barrier: " + str(barrier))
-	if can_attack:
-		print("Enemy " + str(enemy_id) + " is able to attack")
-		print("Attempting to emit attack_barrier signal")
-		var connected_signals = get_signal_connection_list("attack_barrier")
-		print("Connected signals for attack_barrier: " + str(connected_signals))
-		emit_signal("attack_barrier", 20, barrier, enemy_id)
-		print("Signal emission attempted")
-		can_attack = false
-		attack_timer.start(2.0)
-		print("Attack timer started for enemy " + str(enemy_id))
-	else:
-		print("Enemy " + str(enemy_id) + " cannot attack yet. Time left: " + str(attack_timer.time_left))
 
 func deal_damage(damage: int, hit_enemy_id: int):
 	if hit_enemy_id == enemy_id:
@@ -42,25 +48,105 @@ func deal_damage(damage: int, hit_enemy_id: int):
 		emit_signal("get_damage", enemy_id, hp)
 		if hp <= 0:
 			emit_signal("add_score", 10)
+			drop_ammo()
+			print("dropped ammo")
 			queue_free()
 	else:
 		print("Warning: Mismatched enemy ID. Expected " + str(enemy_id) + ", got " + str(hit_enemy_id))
 
-func _process(delta):
-	if hp > 0:
+func drop_ammo():
+	if ammo_scene:
+		var array = [1, 2]
+		var value = array.pick_random()
+		if value == 1:
+			var ammo_instance = ammo_scene.instantiate()
+			ammo_instance.position = global_position
+			get_parent().add_child(ammo_instance)
+
+func _process(_delta):
+	Globals.zombieDamageAmount = damage_to_deal
+	Globals.zombieDamageZone = $ZombieDamageArea
+	
+	if hp > 0 and Globals.playerAlive:
 		look_at(Globals.player_pos)
 
-func _physics_process(_delta: float) -> void:
-	if hp > 0:
-		rotate(PI/2)
-		var player_pos = Globals.player_pos
-		var direction = (player_pos - global_position).normalized()
-		velocity = direction * SPEED
-		
-		if velocity != Vector2.ZERO:
-			animated_sprite.play("walking")
+func _physics_process(delta: float) -> void:
+	if Globals.playerAlive:
+		if hp > 0:
+			rotate(PI/2)
+			var target_pos = get_target_position()
+			var direction = (target_pos - global_position).normalized()
+			
+			# Apply obstacle avoidance
+			direction = avoid_obstacles(direction)
+			
+			velocity = direction * SPEED
+			
+			if velocity != Vector2.ZERO and !is_dealing_damage and !is_attacking_barrier:
+				animated_sprite.play("walking")
+			elif is_dealing_damage or is_attacking_barrier:
+				velocity = Vector2.ZERO
+				animated_sprite.play("attack")
+			
+			move_and_slide()
 		else:
+			await get_tree().create_timer(2.0).timeout
 			animated_sprite.play("idle")
-		
-		move_and_slide()
 
+func avoid_obstacles(direction: Vector2) -> Vector2:
+	var avoidance = Vector2.ZERO
+	
+	if raycast_forward.is_colliding():
+		avoidance -= raycast_forward.get_collision_normal() * AVOIDANCE_FORCE
+	
+	if raycast_left.is_colliding():
+		avoidance -= raycast_left.get_collision_normal() * AVOIDANCE_FORCE
+	
+	if raycast_right.is_colliding():
+		avoidance -= raycast_right.get_collision_normal() * AVOIDANCE_FORCE
+	
+	return (direction + avoidance).normalized()
+
+func get_target_position() -> Vector2:
+	var barriers = get_tree().get_nodes_in_group("barrier")
+	var nearest_barrier = null
+	var nearest_distance = INF
+	
+	for barrier in barriers:
+		if barrier not in destroyed_barriers:
+			var distance = global_position.distance_to(barrier.global_position)
+			if distance < nearest_distance:
+				nearest_distance = distance
+				nearest_barrier = barrier
+	
+	if nearest_barrier and nearest_distance < global_position.distance_to(Globals.player_pos):
+		current_target = nearest_barrier
+		return nearest_barrier.global_position
+	else:
+		current_target = null
+		return Globals.player_pos
+
+func attack_barrier(barrier):
+	if !is_attacking_barrier and barrier not in destroyed_barriers:
+		is_attacking_barrier = true
+		while barrier.hp > 0 and is_instance_valid(barrier) and !barrier.is_destroyed:
+			barrier.take_damage(damage_to_deal, enemy_id)
+			await get_tree().create_timer(1.0).timeout
+		is_attacking_barrier = false
+
+func on_barrier_destroyed(barrier):
+	if barrier in destroyed_barriers:
+		return
+	destroyed_barriers.append(barrier)
+	if current_target == barrier:
+		# Immediately recalculate path
+		velocity = Vector2.ZERO
+		current_target = null
+
+func _on_zombie_damage_area_area_entered(area):
+	if area == Globals.playerHitbox:
+		is_dealing_damage = true
+		await get_tree().create_timer(1.0).timeout
+		is_dealing_damage = false
+	elif area.get_parent().is_in_group("barrier") and area.get_parent() not in destroyed_barriers:
+		attack_barrier(area.get_parent())

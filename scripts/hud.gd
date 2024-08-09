@@ -1,9 +1,9 @@
 extends Control
 
-@onready var hp_label = $HPLabel
-@onready var weapon_label = $WeaponLabel
-@onready var ammo_label = $AmmoLabel
-@onready var score_label = $ScoreLabel
+@onready var hp_label = $CanvasLayer/HPLabel
+@onready var weapon_label = $CanvasLayer/WeaponLabel
+@onready var ammo_label = $CanvasLayer/AmmoLabel
+@onready var score_label = $CanvasLayer/ScoreLabel
 @onready var camera = get_viewport().get_camera_2d()
 
 var hp = 100
@@ -23,7 +23,7 @@ func update_hud(hp, weapon, ammo, score):
 	weapon_label.text = "Weapon: " + str(weapon)
 	score_label.text = "Score: " + str(score)
 
-func take_damage(lost_hp):
+func set_hp(lost_hp):
 	hp -= lost_hp
 	update_hud(hp, weapon, ammo, score)
 
@@ -40,5 +40,5 @@ func add_score(amount):
 	update_hud(hp, weapon, ammo, score)
 
 func _process(delta):
-	if camera:
+	if camera and Globals.playerAlive:
 		global_position = camera.get_screen_center_position() - get_viewport_rect().size / 2

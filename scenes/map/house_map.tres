@@ -50,7 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://cmwbtsrnianvt" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0042_Layer-43.png" id="48_8c0he"]
 [ext_resource type="Texture2D" uid="uid://c2pbv5tbyyifg" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0043_Layer-44.png" id="49_yjujk"]
 [ext_resource type="Texture2D" uid="uid://bnqec0cc888pa" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0023_Layer-24.png" id="50_pqu3o"]
-[ext_resource type="Texture2D" uid="uid://b7o22m42r7b1y" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0044_Layer-45.png" id="51_ovj6i"]
+[ext_resource type="Texture2D" uid="uid://b7o22m42r7b1y" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Tilelists/objects_house_0044_Layer-45.png" id="51_ovj6i"]
 [ext_resource type="Texture2D" uid="uid://d0orxmjqk53uh" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0045_Layer-46.png" id="52_ud4xd"]
 [ext_resource type="Texture2D" uid="uid://tobofua8p2s2" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0046_Layer-47.png" id="53_0qywv"]
 [ext_resource type="Texture2D" uid="uid://dqo08jp5dimh6" path="res://assets/tilemap/zombie-tds-tilesets-buildings-and-furniture/Objects/PNG_version_2/objects_house_0047_Layer-48.png" id="54_iqusv"]
