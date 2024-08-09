@@ -1,23 +1,33 @@
 [gd_scene format=3 uid="uid://2sb4wl82v6gx"]
 
 [node name="HUD" type="Control"]
+top_level = true
+light_mask = 0
+visibility_layer = 1023
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1151.0
 offset_bottom = 647.0
 
-[node name="HPLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 584.0
-offset_right = 164.0
-offset_bottom = 648.0
-text = "HP: 100"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 31.0
+offset_top = 14.0
+offset_right = 79.0
+offset_bottom = 37.0
+text = "Score:"
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer"]
+offset_left = 998.0
+offset_top = 591.0
+offset_right = 1152.0
+offset_bottom = 647.0
+text = "Ammo:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WeaponLabel" type="Label" parent="."]
-layout_mode = 0
+[node name="WeaponLabel" type="Label" parent="CanvasLayer"]
 offset_left = 986.0
 offset_top = 513.0
 offset_right = 1153.0
@@ -27,20 +37,11 @@ text = "Weapon:
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AmmoLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 998.0
-offset_top = 591.0
-offset_right = 1152.0
-offset_bottom = 647.0
-text = "Ammo:"
+[node name="HPLabel" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 584.0
+offset_right = 164.0
+offset_bottom = 648.0
+text = "HP: 100"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ScoreLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 31.0
-offset_top = 14.0
-offset_right = 79.0
-offset_bottom = 37.0
-text = "Score:"
