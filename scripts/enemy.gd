@@ -56,9 +56,12 @@ func deal_damage(damage: int, hit_enemy_id: int):
 
 func drop_ammo():
 	if ammo_scene:
-		var ammo_instance = ammo_scene.instantiate()
-		ammo_instance.position = global_position
-		get_parent().add_child(ammo_instance)
+		var array = [1, 2]
+		var value = array.pick_random()
+		if value == 1:
+			var ammo_instance = ammo_scene.instantiate()
+			ammo_instance.position = global_position
+			get_parent().add_child(ammo_instance)
 
 func _process(_delta):
 	Globals.zombieDamageAmount = damage_to_deal

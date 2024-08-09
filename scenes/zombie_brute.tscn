@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://nl5rbakxvobu"]
+[gd_scene load_steps=38 format=3 uid="uid://nl5rbakxvobu"]
 
 [ext_resource type="Texture2D" uid="uid://bfhdni5qmgn8i" path="res://assets/zombie-walking.png" id="1_2vtvg"]
 [ext_resource type="Script" path="res://scripts/zombie_brute.gd" id="1_p3tjd"]
 [ext_resource type="Texture2D" uid="uid://beb5ctag88oxs" path="res://assets/zombie-attacking.png" id="2_l330r"]
+[ext_resource type="PackedScene" uid="uid://dectxx30unmi8" path="res://scenes/ammo.tscn" id="2_ocxe4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65fdr"]
 atlas = ExtResource("2_l330r")
@@ -236,8 +237,9 @@ radius = 9.56628
 
 [node name="zombie_brute" type="CharacterBody2D"]
 rotation = 0.0337773
-scale = Vector2(0.237114, 0.237114)
+scale = Vector2(0.317069, 0.317069)
 script = ExtResource("1_p3tjd")
+ammo_scene = ExtResource("2_ocxe4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.57833

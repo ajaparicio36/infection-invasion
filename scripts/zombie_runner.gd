@@ -11,6 +11,7 @@ var damage_to_deal = 15
 var is_dealing_damage: bool
 
 @onready var animated_sprite = $AnimatedSprite2D
+@export var ammo_scene: PackedScene
 
 var current_target: Node2D
 var is_attacking_barrier: bool = false
@@ -33,9 +34,19 @@ func deal_damage(damage: int, hit_enemy_id: int):
 		emit_signal("get_damage", enemy_id, hp)
 		if hp <= 0:
 			emit_signal("add score", 30)
+			drop_ammo()
 			queue_free()
 	else:
 		print("Warning: Mismatched enemy ID. Expected " + str(enemy_id) + ", got " + str(hit_enemy_id))
+
+func drop_ammo():
+	if ammo_scene:
+		var array = [1, 2, 3, 4, 5]
+		var value = array.pick_random()
+		if value != 4 or value != 5:
+			var ammo_instance = ammo_scene.instantiate()
+			ammo_instance.position = global_position
+			get_parent().add_child(ammo_instance)
 
 func _process(_delta):
 	Globals.sprinterDamageAmount = damage_to_deal
