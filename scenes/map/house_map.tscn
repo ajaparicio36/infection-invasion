@@ -9727,6 +9727,7 @@ sources/67 = SubResource("TileSetAtlasSource_1mhqi")
 
 [node name="HouseMap" type="Node2D"]
 y_sort_enabled = true
+scale = Vector2(1.68, 1.68)
 script = ExtResource("1_if8kr")
 
 [node name="Player" parent="." instance=ExtResource("1_7nhm3")]
@@ -9784,7 +9785,7 @@ position = Vector2(-287, -44)
 rotation = 1.57079
 
 [node name="Barrier2" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(-289, -252)
+position = Vector2(-286, -249)
 rotation = 1.57079
 
 [node name="Barrier3" parent="." instance=ExtResource("107_35xe0")]

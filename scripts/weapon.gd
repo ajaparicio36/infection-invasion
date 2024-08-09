@@ -27,8 +27,8 @@ class Weapon:
 var weapons = {
 	"Pistol": Weapon.new("Pistol", false, 100000000000, 0.3, 20),
 	"Rifle": Weapon.new("Rifle", false, 100, 0.1, 30),
-	"Shotgun": Weapon.new("Shotgun", false, 5, 0.8, 50, 5, 0.4),
-	"Sniper": Weapon.new("Sniper", true, 5, 1, 100)
+	"Shotgun": Weapon.new("Shotgun", false, 12, 0.8, 50, 5, 0.4),
+	"Sniper": Weapon.new("Sniper", true, 3, 1, 100)
 }
 
 signal take_damage(lost_hp)
@@ -71,6 +71,10 @@ func create_bullet(rotation):
 func _on_bullet_hit(damage: int, enemy_id: int):
 	emit_signal("bullet_hit", damage, enemy_id)
 	print("Bullet hit enemy " + str(enemy_id) + " for " + str(damage) + " damage")
+
+func add_ammo(weapon_name, amount: int):
+	var chosen_weapon = weapons[weapon_name]
+	chosen_weapon.ammo += amount
 
 func _process(delta):
 	for weapon_name in weapons.keys():

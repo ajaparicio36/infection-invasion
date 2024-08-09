@@ -10,6 +10,9 @@ var ammo_count = 0  # Add ammo count
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+signal set_hp(lost_hp)
+signal add_ammo(weapon_name, amount)
+
 func _ready():
 	dead = false
 	can_take_damage = true
@@ -71,6 +74,7 @@ func take_damage(damage):
 	if damage != 0:
 		if hp > 0:
 			hp -= damage
+			emit_signal("set_hp", damage)
 			print("player hp: ", hp)
 			if hp <= 0:
 				hp = 0
@@ -90,6 +94,24 @@ func take_damage_cooldown(wait_time):
 	can_take_damage = true
 
 func pick_up_ammo(ammo):
-	ammo_count += 1  # Increase player's ammo count
-	print("Ammo picked up! Total ammo: ", ammo_count)
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var random_value = rng.randf()
+	var weapon:int
+	
+	if random_value < 0.40:  # 50% chance for 2
+		weapon = 2
+	elif random_value < 0.80:  # 25% chance for 3
+		weapon = 3
+	else:  # 25% chance for 4
+		weapon = 4
+	
+	if weapon == 2:
+		emit_signal("add_ammo", "Rifle", 60)
+	elif weapon == 3:
+		emit_signal("add_ammo", "Shotgun", 12)
+	else:
+		emit_signal("add_ammo", "Sniper", 5)
+	print("Ammo picked up for weapon ", weapon)
 	ammo.queue_free()  # Remove ammo from the scene after pickup

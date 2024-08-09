@@ -23,7 +23,7 @@ func update_hud(hp, weapon, ammo, score):
 	weapon_label.text = "Weapon: " + str(weapon)
 	score_label.text = "Score: " + str(score)
 
-func take_damage(lost_hp):
+func set_hp(lost_hp):
 	hp -= lost_hp
 	update_hud(hp, weapon, ammo, score)
 
