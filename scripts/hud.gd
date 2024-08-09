@@ -1,9 +1,9 @@
 extends Control
 
-@onready var hp_label = $HPLabel
-@onready var weapon_label = $WeaponLabel
-@onready var ammo_label = $AmmoLabel
-@onready var score_label = $ScoreLabel
+@onready var hp_label = $CanvasLayer/HPLabel
+@onready var weapon_label = $CanvasLayer/WeaponLabel
+@onready var ammo_label = $CanvasLayer/AmmoLabel
+@onready var score_label = $CanvasLayer/ScoreLabel
 @onready var camera = get_viewport().get_camera_2d()
 
 var hp = 100

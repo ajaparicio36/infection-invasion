@@ -3,9 +3,11 @@ extends Node2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var barrel = $Barrel
 var Bullet = preload("res://scenes/projectile.tscn")
-var weapon
+var weapon: Weapon
 var can_fire = true
 var fire_timer = 0.0
+@onready var pistol_sfx: AudioStreamPlayer2D = $Pistol
+@onready var sg_sfx: AudioStreamPlayer2D = $Shotgun
 
 class Weapon:
 	var name: String
@@ -15,7 +17,8 @@ class Weapon:
 	var bullet_count: int = 1
 	var spread: float = 0.0
 	var ammo: int
-	func _init(_name: String, _penetrate: bool, _ammo: int, _fire_rate: float, _damage: int, _bullet_count: int = 1, _spread: float = 0.0):
+	var sound: AudioStreamPlayer2D
+	func _init(_name: String, _penetrate: bool, _ammo: int, _fire_rate: float, _damage: int, _sound: AudioStreamPlayer2D, _bullet_count: int = 1, _spread: float = 0.0):
 		name = _name
 		penetrate = _penetrate
 		fire_rate = _fire_rate
@@ -23,12 +26,13 @@ class Weapon:
 		bullet_count = _bullet_count
 		spread = _spread
 		ammo = _ammo
+		sound = _sound
 
 var weapons = {
-	"Pistol": Weapon.new("Pistol", false, 100000000000, 0.3, 20),
-	"Rifle": Weapon.new("Rifle", false, 100, 0.1, 30),
-	"Shotgun": Weapon.new("Shotgun", false, 12, 0.8, 50, 5, 0.4),
-	"Sniper": Weapon.new("Sniper", true, 3, 1, 100)
+	"Pistol": Weapon.new("Pistol", false, 100000000000, 0.3, 20, pistol_sfx),
+	"Rifle": Weapon.new("Rifle", false, 100, 0.1, 30, pistol_sfx),
+	"Shotgun": Weapon.new("Shotgun", false, 12, 0.8, 50, pistol_sfx, 5, 0.4),
+	"Sniper": Weapon.new("Sniper", true, 3, 1, 100, pistol_sfx)
 }
 
 signal take_damage(lost_hp)
@@ -48,9 +52,11 @@ func change_weapon(weapon_name: String):
 
 func shoot():
 	if weapon.bullet_count == 1:
+		pistol_sfx.play()
 		var bullet = create_bullet(barrel.global_rotation)
 		get_tree().current_scene.add_child(bullet)
 	else:
+		sg_sfx.play()
 		for i in range(weapon.bullet_count):
 			var spread_angle = lerp(-weapon.spread, weapon.spread, float(i) / (weapon.bullet_count - 1))
 			var bullet = create_bullet(barrel.global_rotation + spread_angle)
