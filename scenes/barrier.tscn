@@ -24,6 +24,7 @@ radius = 77.0065
 script = ExtResource("1_ba1oa")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["barrier_area"]]
+position = Vector2(-1, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["barrier_area"]]
 position = Vector2(0, 44)
@@ -34,6 +35,8 @@ one_way_collision = true
 sprite_frames = SubResource("SpriteFrames_dmefs")
 
 [node name="Area2D" type="Area2D" parent="." groups=["barrier_area"]]
+position = Vector2(1, 29)
+scale = Vector2(1.44, 0.4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["barrier_area"]]
 position = Vector2(0, 46)
