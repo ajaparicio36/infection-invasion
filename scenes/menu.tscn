@@ -51,6 +51,15 @@ clear_button_enabled = true
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 
+[node name="OkButton" type="Button" parent="LineEdit"]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 73.0
+offset_right = 259.0
+offset_bottom = 104.0
+text = "Okay
+"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -80,5 +89,8 @@ tooltip_text = "Exit the game"
 focus_neighbor_bottom = NodePath("../StartButton")
 text = "Quit"
 
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="LineEdit/OkButton" to="." method="_on_ok_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

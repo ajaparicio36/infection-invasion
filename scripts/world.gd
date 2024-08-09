@@ -11,6 +11,8 @@ var current_nodes: int
 var wave_spawn_ended
 
 func _ready():
+	print("Welcome " + Globals.player_name)
+	
 	weapon.connect("take_damage", Callable(hud, "take_damage"))
 	weapon.connect("set_weapon", Callable(hud, "set_weapon"))
 	weapon.connect("set_ammo", Callable(hud, "set_ammo"))
