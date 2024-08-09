@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://cden2kt0quly0"]
+[gd_scene load_steps=38 format=3 uid="uid://cden2kt0quly0"]
 
 [ext_resource type="Texture2D" uid="uid://bfhdni5qmgn8i" path="res://assets/zombie-walking.png" id="1_5mjgh"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pwa68"]
 [ext_resource type="Texture2D" uid="uid://beb5ctag88oxs" path="res://assets/zombie-attacking.png" id="2_tu81e"]
+[ext_resource type="PackedScene" uid="uid://dectxx30unmi8" path="res://scenes/ammo.tscn" id="2_u6hoj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0lxw"]
 atlas = ExtResource("2_tu81e")
@@ -239,6 +240,7 @@ radius = 162.499
 position = Vector2(1, 3)
 scale = Vector2(0.240001, 0.240001)
 script = ExtResource("1_pwa68")
+ammo_scene = ExtResource("2_u6hoj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-33.3332, -16.6666)

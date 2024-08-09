@@ -10,6 +10,7 @@ var attack_timer = Timer.new()
 var damage_to_deal = 20
 var is_dealing_damage: bool
 @onready var animated_sprite = $AnimatedSprite2D
+@export var ammo_scene: PackedScene
 
 signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
@@ -47,9 +48,17 @@ func deal_damage(damage: int, hit_enemy_id: int):
 		emit_signal("get_damage", enemy_id, hp)
 		if hp <= 0:
 			emit_signal("add_score", 10)
+			drop_ammo()
+			print("dropped ammo")
 			queue_free()
 	else:
 		print("Warning: Mismatched enemy ID. Expected " + str(enemy_id) + ", got " + str(hit_enemy_id))
+
+func drop_ammo():
+	if ammo_scene:
+		var ammo_instance = ammo_scene.instantiate()
+		ammo_instance.position = global_position
+		get_parent().add_child(ammo_instance)
 
 func _process(_delta):
 	Globals.zombieDamageAmount = damage_to_deal
