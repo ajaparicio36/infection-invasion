@@ -21,6 +21,7 @@ signal get_damage(enemy_id: int, current_hp: int)
 signal add_score(amount)
 
 func _ready():
+	modulate = Color(0.5, 0.5, 1, 1)
 	is_dealing_damage = false
 	add_to_group("enemy")
 	enemy_id = get_instance_id()
