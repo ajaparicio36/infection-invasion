@@ -9792,8 +9792,8 @@ rotation = 4.71239
 scale = Vector2(2.52, 1)
 
 [node name="Barrier5" parent="." instance=ExtResource("107_35xe0")]
-position = Vector2(704, 1178)
-scale = Vector2(1.4, 1)
+position = Vector2(748, 1174)
+scale = Vector2(1.96, 1)
 
 [node name="Barrier6" parent="." instance=ExtResource("107_35xe0")]
 position = Vector2(38, 1495)
