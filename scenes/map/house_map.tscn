@@ -9741,7 +9741,7 @@ enabled = false
 energy = 0.8
 shadow_enabled = true
 texture = ExtResource("3_tpxis")
-texture_scale = 2.5
+texture_scale = 5.0
 script = ExtResource("4_xrnh8")
 point_light = NodePath(".")
 
